@@ -1,0 +1,26 @@
+.container
+	.row
+		.twelve.columns
+			%h4 Sign Up
+.container
+	.row
+		.twelve.columns
+			= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :validate => true) do |f|
+				%ul
+					%li
+						%strong=f.label :firstname, "First Name"
+						=f.text_field :firstname,:placeholder => "First Name", :class => "custom_textarea"
+					%li
+						%strong=f.label :lastname, "Last Name"
+						=f.text_field :lastname,:placeholder => "Last Name", :class => "custom_textarea"
+
+					%li
+						%strong=f.label :email
+						=f.text_field :email,:placeholder => "Email", :class => "custom_textarea"
+					%li
+						%strong=f.label :password
+						=f.password_field :password,:placeholder => "Password", :class => "custom_textarea"
+					%li
+						%strong=f.label :confirmpassword, "Confirm Password"
+						=f.password_field :confirm_password,:placeholder => "Confirm Password", :class => "custom_textarea"
+					%li=f.submit :class => "small black button", :value => "Sign Up"

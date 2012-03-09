@@ -1,0 +1,10 @@
+.container
+	.row
+		.twelve.columns
+			%h6 Login
+			=form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+				%ul
+					%li=f.text_field :email, :placeholder => "Email", :class => "custom_textarea"
+					%li=f.password_field :password, :placeholder => "Password", :class => "custom_textarea"
+					%li=f.submit :class => "small black button", :value => "Login"
+			= render :partial => "devise/shared/links"

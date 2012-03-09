@@ -14,6 +14,7 @@ gem 'zurb-foundation', "2.1.5.1"
 gem 'haml'
 gem 'devise'
 gem 'pg'
+gem 'formtastic'
 
 
 # Gems used only for assets and not required

@@ -8,3 +8,14 @@
 //= require jquery_ujs
 //= require foundation
 //= require_tree .
+
+$(document).ready(function(){
+$(".popup").click(function(e){
+    $(".popup .popup_content").css("visibility","visible");
+   e.stopPropagation();
+});
+
+$("body").click(function(e){
+    $(".popup .popup_content").css("visibility","hidden");
+});
+});

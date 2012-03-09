@@ -1,0 +1,118 @@
+.formtastic {
+  
+    label {
+      small { display:block; font-size: 0.9em; }
+      background: none;
+    }
+
+   
+
+    legend.label {
+      small { display:block; font-size: 0.9em; }
+      background: none;
+      bottom: 42px;
+    }
+
+    .label {
+      text-align: left;
+    }
+
+    .buttons{
+      .button_message{
+        float: right;
+        width: 200px;
+        margin-right: 185px;
+      }
+    }
+    .inputs{
+      overflow: visible;
+      .body_message{
+        margin-top: -35px;
+      }
+    }
+
+    .inline-errors {
+      margin: -1em 0 0 25%;
+      padding-left: 18px;
+    }
+
+    .stringish, .text, .datetime_ui{
+      label {
+        font-family: 'Helvetica', Arial, sans-serif;
+        color: #595857;
+        font-weight:bold;
+        font-size: 14px;
+      }
+
+      input, textarea {
+        width: 180px;
+        background: none repeat scroll 0 0 white;
+        border: 2px solid #E9E9E9;
+        color: #7B776F;
+        margin: 0 0 10px;
+        padding: 10px;
+      }
+    }
+
+
+    .avatarDisplay {
+      padding-left:270px;
+    }
+
+    .fragments-group {
+        
+      padding-left: 27%;
+      padding-bottom: 25px;
+    }
+
+    .datetime_ui{
+      input {
+        width: 155px;
+        background: none repeat scroll 0 0 white;
+        border: 1px solid #E9E9E9;
+        color: #7B776F;
+        margin: 0 0 10px;
+        padding: 6px;
+      }
+    }
+
+    .stringish {
+      input:hover {
+        background: none repeat scroll 0 0 #F4F6FA;
+        border: 1px solid #DBDBDD;
+      }
+    }
+
+    .text {
+      textarea {
+        width: 320px;
+        height: 160px;
+        letter-spacing: normal;
+        word-spacing: normal;
+        line-height: normal;
+        text-transform: none;
+        text-indent: 0px;
+        text-shadow: none;
+        display: inline-block;
+      }
+    }
+
+    .remove_avatar_checkbox{
+      margin-right: 300px;
+    }
+}
+
+.inline_fields  ol { 
+    margin-left: 25%; 
+} 
+
+.inline_fields  li { 
+    float:left; 
+    list-style:none;
+    margin-right: 1em; 
+} 
+
+li .inline_fields_input {
+  font-size:25px;
+}
+

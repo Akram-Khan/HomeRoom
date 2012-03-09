@@ -1,0 +1,118 @@
+
+html, body {    
+   height: 100%; 
+}
+
+.container{
+  margin-top: 15px;
+}
+
+.header{
+  background-color: #01A9DB;
+}
+
+.footer{
+  background-color: black;
+  padding-top: 10px;
+}
+
+.login a{
+  color: black;
+}
+
+
+.foot{
+  
+ 
+  padding: 1px;
+  color: #E6E6E6;
+}
+
+
+.links-footer a{
+  color: #E6E6E6;
+}
+
+/*Searchbox */
+
+.search{
+  height: 22px;
+  width: 12em; 
+}
+
+.search-box{
+  margin-left: 7%;
+
+}
+
+.search-box-1{
+  margin-left: 0%;
+}
+
+.column, .columns { margin-left: .4%; float: left; min-height: 1px; position: relative; }
+
+.formtastic.commit.button{
+  
+  padding-right: 0;
+}
+
+li.commit.button{
+  
+  padding-right: 0;
+}
+
+#all_content {
+   min-height: 100%;
+   margin-bottom: -120px;
+   position: relative;
+}
+
+#custom_footer {
+   height: 120px;
+   position: relative;
+   padding-top:30px;
+}
+
+.clearfooter {
+   height: 120px;
+   clear: both;
+}
+
+div.popup {
+    position: relative;
+    float: right;
+    height: 20px;
+    padding: 5px;
+    margin-right:100px;
+}
+
+div.popup .popup_content{
+    position: absolute;
+    margin-top: 20px;
+    top:30px;
+    right:0;
+    width: 250px;
+    height: 250px;
+    padding: 10px;
+    visibility: hidden;
+    border: 1px solid #E6E6E6;
+    background-color: white;
+    z-index: 99;
+}
+
+.custom_textarea {
+    width: 180px;
+    background: none repeat scroll 0 0 white;
+    border: 1px solid #848484;
+    color: #7B776F;
+    margin: 0 0 10px;
+    padding: 5px;
+}
+
+/*Shadow Effect*/
+
+.shadow{
+   -moz-box-shadow:inset 0 0 5px #E9E9E9;
+   -webkit-box-shadow:inset 0 0 5px #E9E9E9;
+   box-shadow:inset 0 0 5px #E9E9E9;
+}

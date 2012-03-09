@@ -1,0 +1,14 @@
+.header
+	.row
+		.three.columns.container
+			=link_to logo, root_url
+		.four.columns
+		.two.columns.container
+			=form_tag "/search", :method =>"get" do
+				=text_field_tag :query,params[:query], :placeholder => "ENTER COURSE CODE", :class =>"search"
+		.one.columns.container
+			=link_to "JOIN", "#", :class => "small black button"
+		.one.columns.login.container.popup
+			=link_to "LOGIN", "#"
+			.popup_content.shadow
+				=render :partial => "devise/sessions/new"

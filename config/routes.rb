@@ -1,6 +1,15 @@
 Homeroom::Application.routes.draw do
+
   get "home/index"
 
+  devise_for :users do
+    get "signup", :to => "registrations#new"
+    get "login", :to => "sessions#new"
+    post "login", :to => "sessions#new"
+    get "logout", :to => "devise/sessions#destroy"
+  end
+
+ devise_for :users, :controllers => {:sessions => "sessions", :passwords => "passwords", :registrations => "registrations"}
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
