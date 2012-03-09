@@ -109,6 +109,15 @@ div.popup .popup_content{
     padding: 5px;
 }
 
+.logout{
+  padding: 5px;
+}
+
+.logout a{
+  color: black;
+}
+
+
 /*Shadow Effect*/
 
 .shadow{
