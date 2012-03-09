@@ -3,14 +3,13 @@
 		.three.columns.container
 			=link_to logo, root_url
 		.four.columns
-		.two.columns.container
+		.three.columns.container
 			=form_tag "/search", :method =>"get" do
 				=text_field_tag :query,params[:query], :placeholder => "COURSE CODE", :class =>"search"
-		.one.columns.container
-			=link_to "JOIN", "#", :class => "small black button"
+				=submit_tag "JOIN", :class => "small black button"
 		
 		-if current_user.blank?
-			.one.columns.login.container.popup
+			.one.columns.login.container.popup.test
 				=link_to "LOGIN", "#"
 				.popup_content.shadow
 					=render :partial => "devise/sessions/new"

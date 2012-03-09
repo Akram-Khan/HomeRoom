@@ -37,16 +37,7 @@ html, body {
 
 .search{
   height: 22px;
-  width: 8em;
-}
-
-.search-box{
-  margin-left: 7%;
-
-}
-
-.search-box-1{
-  margin-left: 0%;
+  width: 10em;
 }
 
 .column, .columns { margin-left: .4%; float: left; min-height: 1px; position: relative; }
