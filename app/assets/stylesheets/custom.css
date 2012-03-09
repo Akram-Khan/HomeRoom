@@ -37,7 +37,7 @@ html, body {
 
 .search{
   height: 22px;
-  width: 12em; 
+  width: 8em;
 }
 
 .search-box{
@@ -50,16 +50,6 @@ html, body {
 }
 
 .column, .columns { margin-left: .4%; float: left; min-height: 1px; position: relative; }
-
-.formtastic.commit.button{
-  
-  padding-right: 0;
-}
-
-li.commit.button{
-  
-  padding-right: 0;
-}
 
 #all_content {
    min-height: 100%;
