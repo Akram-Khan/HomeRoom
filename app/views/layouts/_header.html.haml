@@ -2,17 +2,13 @@
 	.row
 		.three.columns.container
 			=link_to logo, root_url
-		.four.columns
-		.three.columns.container
-			=form_tag "/search", :method =>"get" do
-				=text_field_tag :query,params[:query], :placeholder => "COURSE CODE", :class =>"search"
-				=submit_tag "JOIN", :class => "small black button"
+		.seven.columns
+		.one.columns.container
+			=link_to "Join", "#", :class => "small black button"
 		
 		-if current_user.blank?
-			.one.columns.login.container.popup.test
+			.one.columns.container.login.popup
 				=link_to "LOGIN", "#"
 				.popup_content.shadow
 					=render :partial => "devise/sessions/new"
-		-else
-			.one.columns.logout.container
-				=link_to "LOGOUT", logout_path
+		

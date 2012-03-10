@@ -61,10 +61,7 @@ html, body {
 
 div.popup {
     position: relative;
-    float: right;
     height: 20px;
-    padding: 5px;
-    margin-right:100px;
 }
 
 div.popup .popup_content{
