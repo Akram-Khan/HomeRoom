@@ -1,14 +1,16 @@
 .header
 	.row
-		.three.columns.container
+		.three.columns.section
 			=link_to logo, root_url
 		.seven.columns
-		.one.columns.container
+		.two.columns.section
 			=link_to "Join", "#", :class => "small black button"
 		
 		-if current_user.blank?
-			.one.columns.container.login.popup
+			.one.columns.login.section.popup
 				=link_to "LOGIN", "#"
 				.popup_content.shadow
 					=render :partial => "devise/sessions/new"
-		
+		-else
+			.one.columns.logout.section
+				=link_to "LOGOUT", logout_path
