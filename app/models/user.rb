@@ -10,9 +10,9 @@ class User < ActiveRecord::Base
   name_regex = /^(([a-z]_)|[a-z])([a-z])*$/i
 
   validates :firstname, :presence   => true, 
-                        :length     => { :within => 4..30 },
+                        :length     => { :within => 1..30 },
                         :format => {:with => name_regex, :message => "Only English language letters allowed" }
   validates :lastname,  :presence   => true, 
-                        :length     => { :within => 4..30 },
+                        :length     => { :within => 1..30 },
                         :format => {:with => name_regex, :message => "Only English language letters allowed" }
 end

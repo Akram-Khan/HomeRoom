@@ -16,10 +16,21 @@ html, body {
   padding-top: 10px;
 }
 
+.login{
+  padding: 5px;
+}
+
 .login a{
   color: black;
 }
 
+.logout{
+  padding: 5px;
+}
+
+.logout a{
+  color: black;
+}
 
 .foot{
   
@@ -87,13 +98,7 @@ div.popup .popup_content{
     padding: 5px;
 }
 
-.logout{
-  padding: 5px;
-}
 
-.logout a{
-  color: black;
-}
 
 
 /*Shadow Effect*/
