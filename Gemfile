@@ -15,6 +15,7 @@ gem 'haml'
 gem 'devise'
 gem 'pg'
 gem 'formtastic'
+gem "omniauth-facebook"
 
 
 # Gems used only for assets and not required

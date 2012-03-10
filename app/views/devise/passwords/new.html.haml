@@ -1,10 +1,24 @@
 .section
 	.row
-		.twelve.columns
+.section
+	.row
+.section
+	.row
+.section
+	.row
+.section
+	.row
+.section
+	.row
+.section
+	.row
+.section
+	.row
+		.four.columns
+		.five.columns
 			%h4 Forgot your password?
-			=semantic_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f|
-				=f.inputs do
-					=f.input :email, :label => "Email"
-				=f.buttons do
-					=f.commit_button :button_html => {:class => "small radius nice green button"}, :label => "Send me reset password instructions"
+			%hr
+			=form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f|
+				=f.text_field :email, :placeholder => "Email", :class => "custom_textarea", :size => "10"
+				=f.submit :class => "small black button", :value => "Send me the instructions"
 

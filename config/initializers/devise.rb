@@ -17,6 +17,8 @@ Devise.setup do |config|
   # :mongoid (bson_ext recommended) by default. Other ORMs may be
   # available as additional gems.
   require 'devise/orm/active_record'
+  require "omniauth-facebook"
+  config.omniauth :facebook, "175024235947786", "2bcf1c909bca25a8e10aa6a83ae7ddf5"
 
   config.warden do |manager|
     manager.failure_app = CustomFailure

@@ -7,4 +7,7 @@
 					%li=f.text_field :email, :placeholder => "Email", :class => "custom_textarea"
 					%li=f.password_field :password, :placeholder => "Password", :class => "custom_textarea"
 					%li=f.submit :class => "small black button", :value => "Login"
-			= render :partial => "devise/shared/links"
+			%ul
+				%li= link_to image_tag("facebook_login_button.png"),user_omniauth_authorize_path(:facebook)
+				%li= render :partial => "devise/shared/links"
+			
