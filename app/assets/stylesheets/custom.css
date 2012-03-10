@@ -35,9 +35,9 @@ html, body {
 
 /*Searchbox */
 
-.search{
-  height: 22px;
-  width: 10em;
+.join{
+  height: 25px;
+  width: 8em;
 }
 
 .column, .columns { margin-left: .4%; float: left; min-height: 1px; position: relative; }

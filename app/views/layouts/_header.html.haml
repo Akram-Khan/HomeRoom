@@ -2,9 +2,11 @@
 	.row
 		.three.columns.section
 			=link_to logo, root_url
-		.seven.columns
-		.two.columns.section
-			=link_to "Join", "#", :class => "small black button"
+		.five.columns
+		.three.columns.section
+			=form_tag "/join", :method =>"get" do
+				=text_field_tag :query,params[:query], :placeholder => "COURSE CODE", :class =>"join"
+				=submit_tag "JOIN", :class => "small black button"
 		
 		-if current_user.blank?
 			.one.columns.login.section.popup
