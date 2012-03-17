@@ -1,7 +1,9 @@
 .section
 	.row
 		.twelve.columns
-			%h6 Login
+			%h5 
+				%strong LOGIN
+			%hr
 			=form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
 				%ul
 					%li=f.text_field :email, :placeholder => "Email", :class => "custom_textarea"
@@ -10,4 +12,3 @@
 			%ul
 				%li= link_to image_tag("facebook_login_button.png"),user_omniauth_authorize_path(:facebook)
 				%li= render :partial => "devise/shared/links"
-			

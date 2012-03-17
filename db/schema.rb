@@ -11,7 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120309113635) do
+ActiveRecord::Schema.define(:version => 20120313141341) do
+
+  create_table "courses", :force => true do |t|
+    t.string   "number"
+    t.string   "name"
+    t.string   "school"
+    t.string   "term"
+    t.date     "year"
+    t.string   "invitation_code"
+    t.string   "created_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
