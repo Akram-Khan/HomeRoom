@@ -1,0 +1,22 @@
+!!!
+%html
+	%head
+		%meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
+	%body
+		Hello #{@firstname} #{@lastname},
+		%br
+		%p
+			Thanks for creating the course #{@coursename.capitalize} at HomeRoom.
+		%p
+			To invite your students to join the course, you can enter their email addresses 
+			= link_to "here ", new_course_invite_student_url(@course)
+			and we will do the rest.
+		%p
+			Else, you can give out this invitation code : INVITATION_CODE to your students
+		%p	
+			The course will not be active unless the teacher accepts it. You can view the current status of the course by visiting your dashboard at 
+
+			= link_to "Homeroom Dashboard", "http://homeroom9.com/dashboard"
+		%p
+			Thank you for using 
+			= link_to "Homeroom", "http://homeroom9.com"

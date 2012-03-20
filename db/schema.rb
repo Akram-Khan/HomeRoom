@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120313141341) do
+ActiveRecord::Schema.define(:version => 20120319151819) do
 
   create_table "courses", :force => true do |t|
     t.string   "number"
@@ -21,9 +21,44 @@ ActiveRecord::Schema.define(:version => 20120313141341) do
     t.date     "year"
     t.string   "invitation_code"
     t.string   "created_by"
+    t.boolean  "active",          :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "invite_students", :force => true do |t|
+    t.string   "email"
+    t.integer  "course_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "invite_students", ["course_id"], :name => "index_invite_students_on_course_id"
+  add_index "invite_students", ["email"], :name => "index_invite_students_on_email"
+
+  create_table "invite_teachers", :force => true do |t|
+    t.string   "email"
+    t.string   "firstname"
+    t.string   "lastname"
+    t.integer  "course_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "invite_teachers", ["course_id"], :name => "index_invite_teachers_on_course_id"
+  add_index "invite_teachers", ["email"], :name => "index_invite_teachers_on_email"
+
+  create_table "roles", :force => true do |t|
+    t.string   "name"
+    t.integer  "course_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "roles", ["course_id"], :name => "index_roles_on_course_id"
+  add_index "roles", ["name"], :name => "index_roles_on_name"
+  add_index "roles", ["user_id"], :name => "index_roles_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false

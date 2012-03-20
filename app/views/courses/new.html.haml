@@ -31,7 +31,7 @@
 							.eight.columns
 								%strong=f.label :year
 								.styled-select
-									=f.date_select :year, :placeholder => "Year", :start_year => Time.now.year, :discard_month => true
+									=f.date_select :year, :placeholder => "Year", :start_year => Time.now.year, :discard_month => true, :discard_day => true
 					.section
 						.row
 							.two.columns
@@ -46,8 +46,11 @@
 								= f.label :created_by, "Student"
 					.section
 						.row
-							.three.columns
+							.two.columns
 							.four.columns
-								=f.submit :class => "small black button", :value => "Create Course"
+								=f.submit :class => "medium black button", :value => "Proceed"
+							.five.columns
+								=link_to "Go back to Dashboard", dashboard_path, :class => "small white button"
+
 					.section
 						.row

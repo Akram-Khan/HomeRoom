@@ -8,6 +8,7 @@ class CreateCourses < ActiveRecord::Migration
       t.date :year
       t.string :invitation_code
       t.string :created_by
+      t.boolean :active, :default => false
       t.timestamps
     end
   end

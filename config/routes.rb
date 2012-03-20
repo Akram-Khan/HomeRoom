@@ -1,8 +1,6 @@
 Homeroom::Application.routes.draw do
 
-  get "courses/index"
-
-  get "home/index"
+  get "invite_students/new"
 
   devise_for :users, :controllers => {:omniauth_callbacks => "users/omniauth_callbacks", :sessions => "sessions", :passwords => "passwords", :registrations => "registrations"} do
     get "signup", :to => "registrations#new"
@@ -13,8 +11,17 @@ Homeroom::Application.routes.draw do
 
   match "/dashboard", :to => "users#dashboard"
 
-  resources :courses
+  resources :courses do
+    resources :invite_teachers
+    resources :invite_students
+    member do
+      get :students
+      get :enroll_as_student
+    end
+  end
 
+  resources :users
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
