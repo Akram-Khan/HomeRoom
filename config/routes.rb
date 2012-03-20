@@ -16,7 +16,9 @@ Homeroom::Application.routes.draw do
     resources :invite_students
     member do
       get :students
-      get :enroll_as_student
+      get :teachers
+      get :join_as_student
+      get :join_as_teacher
     end
   end
 

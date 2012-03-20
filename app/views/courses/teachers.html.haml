@@ -1,0 +1,6 @@
+.container
+	.row
+		.twelve.columns
+			%h3= @title
+			- @teachers.each do |teacher|
+				=link_to "#{teacher.firstname}", teacher
