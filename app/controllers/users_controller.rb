@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
 
-	before_filter :correct_user, :only => :user_home
+	before_filter :authenticate_user!, :except => [:new,:create]
+	#before_filter :correct_user, :only => :dashboard
 
-	def user_home
-		@user = User.find(params[:id])
+	def dashboard
+		@user = current_user
 	end
 
 	private
@@ -15,7 +16,5 @@ class UsersController < ApplicationController
 
   	def authorized_user?(u)
     	u == current_user
-  	end
-
-	
+  	end	
 end

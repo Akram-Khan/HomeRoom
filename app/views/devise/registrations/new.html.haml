@@ -10,19 +10,19 @@
 					=devise_error_messages!
 					%li
 						%strong=f.label :firstname, "First Name"
-						=f.text_field :firstname,:placeholder => "First Name", :class => "custom_textarea"
+						=f.text_field :firstname, :placeholder => "First Name", :class => "custom_textarea"
 					%li
 						%strong=f.label :lastname, "Last Name"
-						=f.text_field :lastname,:placeholder => "Last Name", :class => "custom_textarea"
+						=f.text_field :lastname, :placeholder => "Last Name", :class => "custom_textarea"
 
 					%li
 						%strong=f.label :email
-						=f.text_field :email,:placeholder => "Email", :class => "custom_textarea"
+						=f.text_field :email, :placeholder => "Email", :class => "custom_textarea"
 					%li
 						%strong=f.label :password
-						=f.password_field :password,:placeholder => "Password", :class => "custom_textarea"
+						=f.password_field :password, :placeholder => "Password", :class => "custom_textarea"
 					%li
 						%strong=f.label :confirmpassword, "Confirm Password"
-						=f.password_field :confirm_password,:placeholder => "Confirm Password", :class => "custom_textarea"
-					%li=f.submit :class => "small black button", :value => "Sign Up"
+						=f.password_field :confirm_password, :placeholder => "Confirm Password", :class => "custom_textarea"
+					%li=f.submit :class => "small black button", :value => "SIGN  UP"
 			= render :partial => "devise/shared/links"
