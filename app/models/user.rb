@@ -18,6 +18,9 @@ class User < ActiveRecord::Base
                         :length     => { :within => 1..30 },
                         :format => {:with => name_regex, :message => "Only English language letters allowed" }
 
+  has_many :roles, :dependent => :destroy
+  has_many :courses, :through => :roles
+
   def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
     data = access_token.extra.raw_info
     if user = User.where(:email => data.email).first

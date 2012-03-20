@@ -1,0 +1,2 @@
+module InviteTeachersHelper
+end

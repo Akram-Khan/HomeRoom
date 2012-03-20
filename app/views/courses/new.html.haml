@@ -1,0 +1,56 @@
+.section
+	.row
+		.ten.columns.form_background
+			.section
+				.row
+			.section
+				.row
+					.seven.columns.centered
+						%h3 Create A New Course
+			%hr
+			= form_for(@course = Course.new, :validate => true) do |f|
+				.seven.columns.centered
+					.section
+						.row
+							.four.columns
+								%strong=f.label :number, "Course Number"
+								=f.text_field :number, :placeholder => "Course Number", :size => 15, :class => "custom_textarea_no_width"
+							.eight.columns
+								%strong=f.label :name, "Course Name"
+								=f.text_field :name, :placeholder => "Course Name", :size => 50, :class => "custom_textarea_no_width"
+					.section
+						.row
+							.twelve.columns
+								%strong=f.label :school
+								=f.text_field :school, :placeholder => "School", :size => 82, :class => "custom_textarea_no_width"
+					.section
+						.row
+							.four.columns
+								%strong=f.label :term
+								=f.text_field :term, :placeholder => "Term", :size => 15, :class => "custom_textarea_no_width"
+							.eight.columns
+								%strong=f.label :year
+								.styled-select
+									=f.date_select :year, :placeholder => "Year", :start_year => Time.now.year, :discard_month => true, :discard_day => true
+					.section
+						.row
+							.two.columns
+								%strong=f.label :created_by, "I am a"
+							.one.columns
+								= f.radio_button :created_by, "Teacher", :checked => true
+							.two.columns
+								= f.label :created_by, "Teacher"
+							.one.columns 
+								= f.radio_button :created_by, "Student"
+							.two.columns
+								= f.label :created_by, "Student"
+					.section
+						.row
+							.two.columns
+							.four.columns
+								=f.submit :class => "medium black button", :value => "Proceed"
+							.five.columns
+								=link_to "Go back to Dashboard", dashboard_path, :class => "small white button"
+
+					.section
+						.row
