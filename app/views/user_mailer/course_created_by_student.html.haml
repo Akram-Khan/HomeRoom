@@ -6,7 +6,9 @@
 		Hello #{@firstname} #{@lastname},
 		%br
 		%p
-			Thanks for creating the course #{@coursename.capitalize} at HomeRoom. 
+			Thanks for creating the course 
+			%strong #{@coursename.capitalize} 
+			at HomeRoom. 
 		%p
 			If you haven't already, please invite your teacher to join the course at 
 			= link_to "This Link", new_course_invite_teacher_url(@course)

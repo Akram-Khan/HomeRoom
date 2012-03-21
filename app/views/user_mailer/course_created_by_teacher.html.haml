@@ -6,13 +6,17 @@
 		Hello #{@firstname} #{@lastname},
 		%br
 		%p
-			Thanks for creating the course #{@coursename.capitalize} at HomeRoom.
+			Thanks for creating the course 
+			%strong #{@coursename.capitalize}
+			at HomeRoom.
 		%p
 			To invite your students to join the course, you can enter their email addresses 
 			= link_to "here ", new_course_invite_student_url(@course)
 			and we will do the rest.
 		%p
-			Else, you can give out this invitation code : INVITATION_CODE to your students
+			Else, you can give out this invitation code : 
+			%h5 INVITATION_CODE
+			to your students
 		%p	
 			The course will not be active unless the teacher accepts it. You can view the current status of the course by visiting your dashboard at 
 

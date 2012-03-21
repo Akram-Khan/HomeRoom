@@ -6,12 +6,16 @@
 		Hello #{@firstname} #{@lastname},
 		%br
 		%p
-			Your student #{@invited_by_firstname} #{@invited_by_lastname} of course #{@coursename} has created a Homeroom course, and would like you to join it as teacher. 
+			Your student 
+			%strong #{@invited_by_firstname} #{@invited_by_lastname} 
+			of course 
+			%strong #{@coursename} 
+			has created a Homeroom course, and would like you to join it as teacher. 
 
 		%p	
 			The course will not be active unless you review and accept it. You can view the current status of the course by visiting your dashboard at 
 
 			= link_to "Homeroom Dashboard", "http://homeroom9.com/dashboard"
 		%p
-			To find out more about Homeroom please visit our site at this link 
+			To find out more about Homeroom please visit our site at 
 			= link_to "Homeroom", "http://homeroom9.com"

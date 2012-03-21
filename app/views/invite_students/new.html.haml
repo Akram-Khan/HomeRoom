@@ -5,17 +5,17 @@
 				.row
 			.section
 				.row
-					.seven.columns.centered
+					.eight.columns.centered
 						%h3 Invite your students to join the course
 			%hr
-			= form_for(@invite_student, :url => course_invite_students_path(@course), :html => {:multipart => true}, :validate => true) do |f|
+			= form_for(@invite_student, :url => course_invite_students_path(@course), :html => {:multipart => true}) do |f|
 				.seven.columns.centered
 					.section
 						.row
-							.three.columns
-							.six.columns
+							.two.columns
+							.ten.columns
 								%strong=f.label :invite_by_email, "Email Addresses (separate multiple addresses by commas)"
-								=f.text_field :email, :placeholder => "Email Addresses (separate multiple addresses by commas)", :class => "custom_textarea"
+								=f.text_field :email, :placeholder => "Email Addresses (separate multiple addresses by commas)",:class => "custom_textarea_no_width"
 					.section
 						.row
 							.two.columns
