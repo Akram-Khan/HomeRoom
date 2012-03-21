@@ -13,16 +13,41 @@ class CoursesController < ApplicationController
 		render = "students"
 	end
 
-	def enroll_as_student
-		begin
-			@course = Course.find(params[:id])
-			@course.students << current_user
+	def teachers
+		@title = "Teachers"
+		@course = Course.find(params[:id])
+		@teachers = @course.teachers
+		render = "teachers"
+	end
+
+	def join_as_student
+		@course = Course.find(params[:id])
+		@new_role = @course.roles.new
+		@new_role.course_id = @course.id
+		@new_role.user_id = current_user.id
+		@new_role.name = "student"
+		if @new_role.save
 			flash[:success] = "Successfully Enrolled"
 			redirect_to course_path(@course)
-		rescue ActiveRecord::RecordInvalid
+		else
+			flash[:error] = "You are already enrolled at this course"
 			redirect_to course_path(@course)
-	    	flash[:error] = "You already enrolled at this course"
-	    end
+		end
+	end
+
+	def join_as_teacher
+		@course = Course.find(params[:id])
+		@new_role = @course.roles.new
+		@new_role.course_id = @course.id
+		@new_role.user_id = current_user.id
+		@new_role.name = "teacher"
+		if @new_role.save
+			flash[:success] = "Successfully joined as Teacher"
+			redirect_to course_path(@course)
+		else
+			flash[:error] = "You are already enrolled at this course"
+			redirect_to course_path(@course)
+		end
 	end
 
 	def show
@@ -34,12 +59,20 @@ class CoursesController < ApplicationController
 		@course = Course.new(params[:course])
 		if @course.save
 			if @course.created_by == "Student"
-				@course.students << current_user
+				@new_role = @course.roles.new
+				@new_role.course_id = @course.id
+				@new_role.user_id = current_user.id
+				@new_role.name = "student"				
+				@new_role.save
 				UserMailer.course_created_by_student(current_user.firstname, current_user.lastname, current_user.email, @course).deliver
 				flash[:success] = "Course successfully created, you are the first student"
 				redirect_to new_course_invite_teacher_path(@course)
 			elsif @course.created_by == "Teacher"
-				@course.teachers << current_user
+				@new_role = @course.roles.new
+				@new_role.course_id = @course.id
+				@new_role.user_id = current_user.id
+				@new_role.name = "teacher"				
+				@new_role.save
 				UserMailer.course_created_by_teacher(current_user.firstname, current_user.lastname, current_user.email, @course).deliver
 				flash[:success] = "Course successfully created, you are the Teacher of this course"
 				redirect_to new_course_invite_student_path(@course)
