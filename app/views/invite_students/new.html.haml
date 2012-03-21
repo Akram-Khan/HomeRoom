@@ -15,7 +15,7 @@
 							.two.columns
 							.ten.columns
 								%strong=f.label :invite_by_email, "Email Addresses (separate multiple addresses by commas)"
-								=f.text_field :email, :placeholder => "Email Addresses (separate multiple addresses by commas)",:class => "custom_textarea_no_width"
+								=f.text_area :email, :placeholder => "Email Addresses (separate multiple addresses by commas)", :rows => 10
 					.section
 						.row
 							.two.columns

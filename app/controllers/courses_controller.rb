@@ -57,6 +57,7 @@ class CoursesController < ApplicationController
 
 	def create
 		@course = Course.new(params[:course])
+		@course.invitation_code = generate_activation_code(6)
 		if @course.save
 			if @course.created_by == "Student"
 				@new_role = @course.roles.new
@@ -84,6 +85,11 @@ class CoursesController < ApplicationController
 	end
 
 private
+
+	def generate_activation_code(size)
+	  charset = %w{ 2 3 4 6 7 9 A C D E F G H J K M N P Q R T V W X Y Z}
+	  (0...size).map{ charset.to_a[rand(charset.size)] }.join
+	end
 
 	def correct_user
 

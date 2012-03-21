@@ -27,14 +27,13 @@ ActiveRecord::Schema.define(:version => 20120319151819) do
   end
 
   create_table "invite_students", :force => true do |t|
-    t.string   "email"
+    t.text     "email"
     t.integer  "course_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "invite_students", ["course_id"], :name => "index_invite_students_on_course_id"
-  add_index "invite_students", ["email"], :name => "index_invite_students_on_email"
 
   create_table "invite_teachers", :force => true do |t|
     t.string   "email"
