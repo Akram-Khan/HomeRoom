@@ -1,4 +1,6 @@
 class InviteStudentsController < ApplicationController
+  before_filter :authenticate_user!
+  before_filter :restrict_invite_students_form, :only =>[:new, :create]
 
   def new
   	@course = Course.find(params[:course_id])
@@ -24,6 +26,19 @@ class InviteStudentsController < ApplicationController
           end
         end
       end
+  end
+
+private
+
+  def restrict_invite_students_form
+    @course = Course.find(params[:course_id])
+    @primary_teacher = @course.teachers.first 
+    if current_user == @primary_teacher
+      return
+    else 
+      flash[:error] = "You are not authorised to access this page"
+      redirect_to dashboard_path
+    end
   end
 
 end
