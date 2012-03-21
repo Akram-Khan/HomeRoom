@@ -8,18 +8,30 @@
 					.eight.columns.centered
 						%h3 Invite your students to join the course
 			%hr
-			= form_for(@invite_student, :url => course_invite_students_path(@course), :html => {:multipart => true}) do |f|
-				.seven.columns.centered
-					.section
-						.row
-							.two.columns
-							.ten.columns
-								%strong=f.label :invite_by_email, "Email Addresses (separate multiple addresses by commas)"
-								=f.text_area :email, :placeholder => "Email Addresses (separate multiple addresses by commas)", :rows => 10
-					.section
-						.row
-							.two.columns
-							.five.columns
-								=f.submit :class => "medium black button", :value => "Invite Students"
-							.five.columns
-								=link_to "Go back to Dashboard", dashboard_path, :class => "small white button"
+			.section
+				.row
+					.seven.columns.give_right_border
+						= form_for(@invite_student, :url => course_invite_students_path(@course), :html => {:multipart => true}) do |f|
+							.twelve.columns.centered
+								.section
+									.row
+										.two.columns
+										.ten.columns
+											%strong=f.label :invite_by_email, "Email Addresses (separate multiple addresses by commas)"
+											=f.text_area :email, :placeholder => "Email Addresses (separate multiple addresses by commas)", :rows => "10", :class => "custom_textarea_no_width"
+					
+										.two.columns
+										.five.columns
+											=f.submit :class => "medium black button", :value => "Invite Students"
+										.five.columns
+											=link_to "Go back to Dashboard", dashboard_path, :class => "small white button"
+					.five.columns
+						.section
+							.row
+								.one.columns
+								.eleven.columns
+									%p
+										Share this code with your students to give them access to your course:
+							.row
+								.five.columns.centered
+									%h2=@course.invitation_code

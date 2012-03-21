@@ -126,7 +126,6 @@ div.popup .popup_content{
    box-shadow:inset 0 0 5px #E9E9E9;
 }
 
-form label {
-  color: black;
+.give_right_border {
+  border-right: 1px solid black;
 }
-
