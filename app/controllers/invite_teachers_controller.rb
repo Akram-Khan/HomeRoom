@@ -10,6 +10,7 @@ class InviteTeachersController < ApplicationController
   def create
   	@course = Course.find(params[:course_id])
     @invite_teacher = @course.invite_teachers.build(params[:invite_teacher])
+    @invite_teacher.invited_by = current_user.id
     if @invite_teacher.email == current_user.email
       flash[:error] = "You cannot be both a student and teacher of the same course"
       render :action => "new"
@@ -24,6 +25,21 @@ class InviteTeachersController < ApplicationController
       end
     end
 
+  end
+
+
+  def decline_teacher_invitation
+    @course = Course.find(params[:id])
+    invited_teachers = @course.invite_teachers.all
+    invited_teachers.each do |invited_teacher|
+      if current_user.email == invited_teacher.email
+        invited_teacher.destroy
+        redirect_to dashboard_path
+        return
+      end
+    end
+    flash[:error] = "Teacher not found"
+    redirect_to dashboard_path
   end
 
 

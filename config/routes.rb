@@ -13,6 +13,8 @@ Homeroom::Application.routes.draw do
   match "/join_by_invitation_code", :to => "courses#join_by_invitation_code"
   match "/join_as_student", :to => "courses#join_as_student"
   match "/join_as_teacher", :to => "courses#join_as_teacher"
+  match "/decline_student_invitation", :to => "invite_students#decline_student_invitation"
+  match "/decline_teacher_invitation", :to => "invite_teachers#decline_teacher_invitation"
 
   resources :courses do
     resources :invite_teachers

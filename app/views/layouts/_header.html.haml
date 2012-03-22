@@ -2,17 +2,19 @@
 	.row
 		.three.columns.section
 			=link_to logo, root_url
-		.five.columns
+		.four.columns
 		.three.columns.section
 			=form_tag "/join_by_invitation_code", :method =>"get" do
 				=text_field_tag :invitation_code,params[:invitation_code], :placeholder => "INVITATION CODE", :class =>"join"
 				=submit_tag "JOIN", :class => "small black button"
 		
 		-if current_user.blank?
-			.one.columns.login.section.popup
+			.two.columns.login.section.login_popup
 				=link_to "LOGIN", "#"
-				.popup_content.shadow
+				.login_popup_content.shadow
 					=render :partial => "devise/sessions/new"
 		-else
-			.one.columns.logout.section
-				=link_to "LOGOUT", logout_path
+			.three.columns.logout.section.logout_popup
+				=link_to "#{current_user.firstname[0].upcase}. #{current_user.lastname.upcase}▼", "#"
+				.logout_popup_content
+					=render :partial => "users/logout"
