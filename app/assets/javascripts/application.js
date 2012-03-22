@@ -11,12 +11,23 @@
 //= require_tree .
 
 $(document).ready(function(){
-$(".popup").click(function(e){
-    $(".popup .popup_content").css("visibility","visible");
+$(".login_popup").click(function(e){
+    $(".login_popup .login_popup_content").css("visibility","visible");
    e.stopPropagation();
 });
 
 $("body").click(function(e){
-    $(".popup .popup_content").css("visibility","hidden");
+    $(".login_popup .login_popup_content").css("visibility","hidden");
+});
+});
+
+$(document).ready(function(){
+$(".logout_popup").click(function(e){
+    $(".logout_popup .logout_popup_content").css("visibility","visible");
+   e.stopPropagation();
+});
+
+$("body").click(function(e){
+    $(".logout_popup .logout_popup_content").css("visibility","hidden");
 });
 });

@@ -4,7 +4,11 @@ class UsersController < ApplicationController
 	#before_filter :correct_user, :only => :dashboard
 
 	def dashboard
-		@user = current_user
+		@courses = Course.all
+	end
+
+	def show
+		@user = User.find(params[:id])
 	end
 
 	private

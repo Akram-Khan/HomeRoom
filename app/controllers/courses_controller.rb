@@ -1,6 +1,7 @@
 class CoursesController < ApplicationController
 	before_filter :authenticate_user!
 	before_filter :correct_user, :only => [:show, :teachers, :students, :join_as_student, :join_as_teacher]
+	before_filter :restrict_if_course_is_inactive, :only => [:show]
 
 	make_resourceful do
 		actions :all
@@ -60,7 +61,7 @@ class CoursesController < ApplicationController
 
 	def join_as_teacher
 		if @context == "invite_teacher"
-			@course = Course.find(params[:course_id])
+			@course = Course.find(params[:id])
 			invited_teachers = @course.invite_teachers.all
 			invited_teachers.each do |invited_teacher|
 				if current_user.email == invited_teacher.email
@@ -72,6 +73,8 @@ class CoursesController < ApplicationController
 			@new_role.user_id = current_user.id
 			@new_role.name = "teacher"
 			@new_role.save
+			@course.active = TRUE
+			@course.save
 			flash[:success] = "Successfully joined as Teacher"
 			redirect_to course_path(@course)
 		else
@@ -80,12 +83,14 @@ class CoursesController < ApplicationController
 		end
 	end
 
-	def join_as_teacher_invitation_code(course)
+	def join_as_teacher_by_invitation_code(course)
 		@course = course
 		@new_role = @course.roles.new
 		@new_role.course_id = @course.id
 		@new_role.user_id = current_user.id
 		@new_role.name = "teacher"
+		@course.active = TRUE
+		@course.save
 		if @new_role.save
 			flash[:success] = "Successfully joined as Teacher"
 			redirect_to course_path(@course)
@@ -112,7 +117,7 @@ class CoursesController < ApplicationController
 				@new_role.name = "student"				
 				@new_role.save
 				UserMailer.course_created_by_student(current_user.firstname, current_user.lastname, current_user.email, @course).deliver
-				flash[:success] = "Course successfully created, you are the first student"
+				flash[:success] = "Course successfully created, you are the first student. Please note that this course will not be active unless it has a teacher. Please invite your teacher at the form below"
 				redirect_to new_course_invite_teacher_path(@course)
 			elsif @course.created_by == "Teacher"
 				@new_role = @course.roles.new
@@ -120,6 +125,8 @@ class CoursesController < ApplicationController
 				@new_role.user_id = current_user.id
 				@new_role.name = "teacher"				
 				@new_role.save
+				@course.active = TRUE
+				@course.save
 				UserMailer.course_created_by_teacher(current_user.firstname, current_user.lastname, current_user.email, @course).deliver
 				flash[:success] = "Course successfully created, you are the Teacher of this course"
 				redirect_to new_course_invite_student_path(@course)
@@ -172,7 +179,7 @@ class CoursesController < ApplicationController
 			end
 		end
 
-		join_as_teacher_invitation_code(@course)
+		join_as_teacher_by_invitation_code(@course)
 	end
 
 private
@@ -220,4 +227,16 @@ private
 		redirect_to dashboard_path
 	end
 
+	def restrict_if_course_is_inactive
+		course = Course.find(params[:id])
+		if course.active == FALSE
+			if @context == "student"
+				flash[:notice] = "The course will not be active unless it has a teacher. If you haven't already done so, please invite your teacher to join the course"
+				redirect_to new_course_invite_teacher_path(course)
+			elsif @context == "invite_teacher"
+				flash[:notice] = "This course will not be active unless you Accept to be its teacher."
+				redirect_to dashboard_path
+			end
+		end
+	end
 end

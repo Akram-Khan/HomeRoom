@@ -19,12 +19,14 @@
 										.ten.columns
 											%strong=f.label :invite_by_email, "Email Addresses (separate multiple addresses by commas)"
 											=f.text_area :email, :placeholder => "Email Addresses (separate multiple addresses by commas)", :rows => "10", :class => "custom_textarea_no_width"
-					
+									.row
 										.two.columns
-										.five.columns
-											=f.submit :class => "medium black button", :value => "Invite Students"
-										.five.columns
-											=link_to "Go back to Dashboard", dashboard_path, :class => "small white button"
+										.four.columns
+											=f.submit :class => "small black button", :value => "Invite Students"
+										.four.columns
+											=link_to "Go to Course", course_path(@course), :class => "small blue button"
+										.two.columns
+											=link_to "Dashboard", dashboard_path, :class => "small white button"
 					.five.columns
 						.section
 							.row

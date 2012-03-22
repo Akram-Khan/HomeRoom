@@ -1,20 +1,95 @@
 .section
 	.row
-		.twelve.columns
-			="Hi #{@user.firstname}, welcome back on Homeroom"
 .section
 	.row
 .section
 	.row
 .section
 	.row
-.section
-	.row
-.section
-	.row
-.section
-	.row
-		.four.columns
+		.three.columns
 		.eight.columns
-			=link_to "CREATE A NEW COURSE", new_course_path, :class => "large blue button"
-			= link_to "Enroll", join_as_student_path(:id => 1)
+			=link_to "CREATE A HOMEROOM COURSE", new_course_path, :class => "large blue button"
+
+.section
+	.row
+.section
+	.row
+		.twelve.columns
+			INVITED TO TEACH
+		.row
+			.twelve.columns
+				-@courses.each do |course|
+					.row
+						.twelve.columns
+							-@invited_teachers = course.invite_teachers.all
+							-@invited_teachers.each do |invited_teacher|
+								-if current_user.email == invited_teacher.email
+									=link_to "#{course.number}", course_path(course)
+									=course.name
+									=course.term
+									=course.year
+									- invited_by = User.find(invited_teacher.invited_by)
+									= link_to "#{invited_by.firstname} #{invited_by.lastname}", user_path(invited_by)
+									=link_to "Accept", join_as_teacher_path(:id => course)
+									=link_to "Decline", decline_teacher_invitation_path(:id => course)
+
+.section
+	.row
+.section
+	.row
+		.twelve.columns
+			INVITED TO ENROLL
+		.row
+			.twelve.columns
+				-@courses.each do |course|
+					.row
+						.twelve.columns
+							-@invited_students = course.invite_students.all
+							-@invited_students.each do |invited_student|
+								-if current_user.email == invited_student.email
+									=link_to "#{course.number}", course_path(course)
+									=course.name
+									=course.term
+									=course.year
+									- invited_by = User.find(invited_student.invited_by)
+									= link_to "#{invited_by.firstname} #{invited_by.lastname}", user_path(invited_by)
+									=link_to "Enroll", join_as_student_path(:id => course)
+									=link_to "Decline", decline_student_invitation_path(:id => course)								
+.section
+	.row
+.section
+	.row
+		.twelve.columns
+			ACTIVE COURSES
+		.row
+			.twelve.columns
+				ACTIVE COURSES AS TEACHER
+				-@courses.each do |course|
+					.row
+						.twelve.columns
+							-@teachers = course.teachers.all
+							-@teachers.each do |teacher|
+								-if current_user == teacher
+									=link_to "#{course.number}", course_path(course)
+									=course.name
+									=course.term
+									=course.year
+									=course.invitation_code_student
+									=course.invitation_code_teacher
+		.row
+			.twelve.columns
+				ACTIVE COURSES AS STUDENT
+				-@courses.each do |course|
+					.row
+						.twelve.columns
+							-@students = course.students.all
+							-@students.each do |student|
+								-if current_user == student
+									=link_to "#{course.number}", course_path(course)
+									=course.name
+									=course.term
+									=course.year
+									- if course.active
+										=link_to "#{course.teachers.first.firstname} #{course.teachers.first.lastname}", user_path(course.teachers.first)
+
+
