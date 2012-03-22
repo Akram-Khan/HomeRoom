@@ -4,8 +4,8 @@
 			=link_to logo, root_url
 		.five.columns
 		.three.columns.section
-			=form_tag "/join", :method =>"get" do
-				=text_field_tag :query,params[:query], :placeholder => "COURSE CODE", :class =>"join"
+			=form_tag "/join_by_invitation_code", :method =>"get" do
+				=text_field_tag :invitation_code,params[:invitation_code], :placeholder => "INVITATION CODE", :class =>"join"
 				=submit_tag "JOIN", :class => "small black button"
 		
 		-if current_user.blank?

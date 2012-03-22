@@ -6,7 +6,8 @@ class CreateCourses < ActiveRecord::Migration
       t.string :school
       t.string :term
       t.date :year
-      t.string :invitation_code
+      t.string :invitation_code_student
+      t.string :invitation_code_teacher
       t.string :created_by
       t.boolean :active, :default => false
       t.timestamps

@@ -19,9 +19,10 @@ ActiveRecord::Schema.define(:version => 20120319151819) do
     t.string   "school"
     t.string   "term"
     t.date     "year"
-    t.string   "invitation_code"
+    t.string   "invitation_code_student"
+    t.string   "invitation_code_teacher"
     t.string   "created_by"
-    t.boolean  "active",          :default => false
+    t.boolean  "active",                  :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

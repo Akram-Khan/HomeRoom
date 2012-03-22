@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
 	before_filter :authenticate_user!
-	before_filter :correct_user, :only => [:show, :teachers, :students]
+	before_filter :correct_user, :only => [:show, :teachers, :students, :join_as_student, :join_as_teacher]
 
 	make_resourceful do
 		actions :all
@@ -21,7 +21,30 @@ class CoursesController < ApplicationController
 	end
 
 	def join_as_student
-		@course = Course.find(params[:id])
+		if @context == "invite_student"
+			@course = Course.find(params[:id])
+			invited_students = @course.invite_students.all
+			invited_students.each do |invited_student|
+				if current_user.email == invited_student.email
+					invited_student.destroy
+				end
+			end
+			@new_role = @course.roles.new
+			@new_role.course_id = @course.id
+			@new_role.user_id = current_user.id
+			@new_role.name = "student"
+			@new_role.save
+			flash[:success] = "Successfully Enrolled"
+			redirect_to course_path(@course)
+		else
+			flash[:error] = "You cannot perform this action"
+			redirect_to dashboard_path
+		end
+	end
+
+
+	def join_as_student_by_invitation_code(course)
+		@course = course
 		@new_role = @course.roles.new
 		@new_role.course_id = @course.id
 		@new_role.user_id = current_user.id
@@ -36,7 +59,29 @@ class CoursesController < ApplicationController
 	end
 
 	def join_as_teacher
-		@course = Course.find(params[:id])
+		if @context == "invite_teacher"
+			@course = Course.find(params[:course_id])
+			invited_teachers = @course.invite_teachers.all
+			invited_teachers.each do |invited_teacher|
+				if current_user.email == invited_teacher.email
+					invited_teacher.destroy
+				end
+			end
+			@new_role = @course.roles.new
+			@new_role.course_id = @course.id
+			@new_role.user_id = current_user.id
+			@new_role.name = "teacher"
+			@new_role.save
+			flash[:success] = "Successfully joined as Teacher"
+			redirect_to course_path(@course)
+		else
+			flash[:error] = "You cannot perform this action"
+			redirect_to dashboard_path
+		end
+	end
+
+	def join_as_teacher_invitation_code(course)
+		@course = course
 		@new_role = @course.roles.new
 		@new_role.course_id = @course.id
 		@new_role.user_id = current_user.id
@@ -57,7 +102,8 @@ class CoursesController < ApplicationController
 
 	def create
 		@course = Course.new(params[:course])
-		@course.invitation_code = generate_activation_code(6)
+		@course.invitation_code_student = generate_activation_code(6)
+		@course.invitation_code_teacher = generate_activation_code(6)
 		if @course.save
 			if @course.created_by == "Student"
 				@new_role = @course.roles.new
@@ -84,6 +130,51 @@ class CoursesController < ApplicationController
 		end
 	end
 
+	def join_by_invitation_code
+		invitation_code = params[:invitation_code]
+		@courses = Course.all
+		found = FALSE
+		@courses.each do |course|
+			if course.invitation_code_student == invitation_code
+				found = TRUE
+				join_by_invitation_code_student(course)
+			elsif course.invitation_code_teacher == invitation_code
+				found = TRUE
+			 	join_by_invitation_code_teacher(course)
+			end
+		end
+		if found == FALSE
+			flash[:error] = "No course found with this invitation code"
+			redirect_to dashboard_path
+		end
+	end
+
+	def join_by_invitation_code_student(course)
+		@course = course
+
+		invited_students = course.invite_students.all
+		invited_students.each do |invited_student|
+			if current_user.email == invited_student.email
+				invited_student.destroy
+			end
+		end
+
+		join_as_student_by_invitation_code(@course)
+	end
+
+	def join_by_invitation_code_teacher(course)
+		@course = course
+
+		invited_teachers = course.invite_teachers.all
+		invited_teachers.each do |invited_teacher|
+			if current_user.email == invited_teacher.email
+				invited_teacher.destroy
+			end
+		end
+
+		join_as_teacher_invitation_code(@course)
+	end
+
 private
 
 	def generate_activation_code(size)
@@ -92,7 +183,6 @@ private
 	end
 
 	def correct_user
-
 		@course = Course.find(params[:id])
 		@students = @course.students.all
 		@students.each do |student|
@@ -112,7 +202,7 @@ private
 
 		@invite_students = @course.invite_students.all
 		@invite_students.each do |invite_student|
-			if current_user == invite_student
+			if current_user.email == invite_student.email
 				@context = "invite_student"
 				return
 			end
@@ -120,7 +210,7 @@ private
 
 		@invite_teachers = @course.invite_teachers.all
 		@invite_teachers.each do |invite_teacher|
-			if current_user == invite_teacher
+			if current_user.email == invite_teacher.email
 				@context = "invite_teacher"
 				return
 			end

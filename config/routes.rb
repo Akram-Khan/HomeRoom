@@ -10,6 +10,9 @@ Homeroom::Application.routes.draw do
   end
 
   match "/dashboard", :to => "users#dashboard"
+  match "/join_by_invitation_code", :to => "courses#join_by_invitation_code"
+  match "/join_as_student", :to => "courses#join_as_student"
+  match "/join_as_teacher", :to => "courses#join_as_teacher"
 
   resources :courses do
     resources :invite_teachers
@@ -17,8 +20,6 @@ Homeroom::Application.routes.draw do
     member do
       get :students
       get :teachers
-      get :join_as_student
-      get :join_as_teacher
     end
   end
 
