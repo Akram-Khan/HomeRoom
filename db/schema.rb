@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(:version => 20120319151819) do
   create_table "invite_students", :force => true do |t|
     t.text     "email"
     t.integer  "course_id"
+    t.integer  "invited_by"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -41,6 +42,7 @@ ActiveRecord::Schema.define(:version => 20120319151819) do
     t.string   "firstname"
     t.string   "lastname"
     t.integer  "course_id"
+    t.integer  "invited_by"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

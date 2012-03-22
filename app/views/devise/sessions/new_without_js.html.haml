@@ -4,11 +4,32 @@
 			%h5 
 				%strong LOGIN
 			%hr
-			=form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-				%ul
-					%li=f.text_field :email, :placeholder => "Email", :class => "custom_textarea"
-					%li=f.password_field :password, :placeholder => "Password", :class => "custom_textarea"
-					%li=f.submit :class => "small black button", :value => "Login"
-			%ul
-				%li= link_to image_tag("facebook_login_button.png"),user_omniauth_authorize_path(:facebook)
-				%li= render :partial => "devise/shared/links"
+		.five.columns.give_right_border
+			.row
+				.twelve.columns
+					=form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+						%ul
+							%li=f.text_field :email, :placeholder => "Email", :class => "custom_textarea"
+							%li=f.password_field :password, :placeholder => "Password", :class => "custom_textarea"
+							%li=f.submit :class => "small black button", :value => "Login"
+					%ul
+						%li= link_to image_tag("facebook_login_button.png"),user_omniauth_authorize_path(:facebook)
+						%li= render :partial => "devise/shared/links"
+		.seven.columns
+			.row
+				.section
+					.row
+				.section
+					.row
+				.section
+					.row
+				.section
+					.row
+				.section
+					.row
+						.three.columns
+						.seven.columns
+							=link_to "SIGN UP", signup_path, :class => "large blue button"
+
+
+

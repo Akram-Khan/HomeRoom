@@ -21,11 +21,26 @@ class InviteStudentsController < ApplicationController
           @invite_student = @course.invite_students.new
           @invite_student.email = email
           @invite_student.course_id = @course.id
+          @invite_student.invited_by = current_user.id
           if @invite_student.save
             UserMailer.send_invite_to_students(current_user.firstname, current_user.lastname, @invite_student.email, @course.name).deliver
           end
         end
       end
+  end
+
+  def decline_student_invitation
+    @course = Course.find(params[:id])
+    invited_students = @course.invite_students.all
+    invited_students.each do |invited_student|
+      if current_user.email == invited_student.email
+        invited_student.destroy
+        redirect_to dashboard_path
+        return
+      end
+    end
+    flash[:error] = "Student not found"
+    redirect_to dashboard_path
   end
 
 private
