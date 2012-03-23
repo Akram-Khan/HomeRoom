@@ -9,14 +9,15 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me, :firstname, :lastname
 
-  name_regex = /^(([a-z]_)|[a-z])([a-z])*$/i
+  firstname_regex = /^(([a-z]_)|[a-z])([a-z])*$/i
+  lastname_regex = /^(([a-z]_)|[a-z])([a-z]+\s?)*$/i
 
   validates :firstname, :presence   => true, 
-                        :length     => { :within => 1..30 },
-                        :format => {:with => name_regex, :message => "Only English language letters allowed" }
+                        :length     => { :within => 1..50},
+                        :format => {:with => firstname_regex, :message => "Only English language letters allowed" }
   validates :lastname,  :presence   => true, 
                         :length     => { :within => 1..30 },
-                        :format => {:with => name_regex, :message => "Only English language letters allowed" }
+                        :format => {:with => lastname_regex, :message => "Only English language letters allowed" }
 
   has_many :roles, :dependent => :destroy
   has_many :courses, :through => :roles

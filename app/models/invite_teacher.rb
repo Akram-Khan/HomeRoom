@@ -6,7 +6,6 @@ class InviteTeacher < ActiveRecord::Base
 
 
   validates :email,     :presence   => true,
-  						          :uniqueness => {:message => "This teacher is already invited to join the course"},
                         :length     => { :within => 1..30 },
                         :format => {:with => email_regex, :message => "Please enter a valid email address" }
   validates :firstname, :presence   => true, 
@@ -15,5 +14,7 @@ class InviteTeacher < ActiveRecord::Base
   validates :lastname,  :presence   => true, 
                         :length     => { :within => 1..30 },
                         :format => {:with => name_regex, :message => "Only English language letters allowed" }
+  
+  validates_uniqueness_of :email, :scope => [:course_id], :message => "This teacher is already invited to join the course"
   belongs_to :course
 end

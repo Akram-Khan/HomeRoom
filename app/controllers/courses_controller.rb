@@ -117,7 +117,7 @@ class CoursesController < ApplicationController
 				@new_role.name = "student"				
 				@new_role.save
 				UserMailer.course_created_by_student(current_user.firstname, current_user.lastname, current_user.email, @course).deliver
-				flash[:success] = "Course successfully created, you are the first student. Please note that this course will not be active unless it has a teacher. Please invite your teacher at the form below"
+				flash[:success] = "Course successfully created, you are the first student. Please note that this course will not be active unless it has a teacher. Please invite your teacher using the form below"
 				redirect_to new_course_invite_teacher_path(@course)
 			elsif @course.created_by == "Teacher"
 				@new_role = @course.roles.new
