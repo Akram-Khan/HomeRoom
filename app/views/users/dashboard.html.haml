@@ -1,3 +1,7 @@
+-invited_to_teach_header_present = 0
+-invited_to_enroll_header_present = 0
+-teacher_header_present = 0
+-student_header_present = 0
 .section
 	.row
 .section
@@ -15,7 +19,6 @@
 .section
 	.row
 		.twelve.columns
-			INVITED TO TEACH
 		.row
 			.twelve.columns
 				-@courses.each do |course|
@@ -23,22 +26,31 @@
 						.twelve.columns
 							-@invited_teachers = course.invite_teachers.all
 							-@invited_teachers.each do |invited_teacher|
-								-if current_user.email == invited_teacher.email
-									=link_to "#{course.number}", course_path(course)
-									=course.name
-									=course.term
-									=course.year
-									- invited_by = User.find(invited_teacher.invited_by)
-									= link_to "#{invited_by.firstname} #{invited_by.lastname}", user_path(invited_by)
-									=link_to "Accept", join_as_teacher_path(:id => course)
-									=link_to "Decline", decline_teacher_invitation_path(:id => course)
+								-if current_user.email == invited_teacher.email					
+									- if invited_to_teach_header_present == 0
+										= render "invited_to_teach_header.html.haml"
+										-invited_to_teach_header_present = 1
+									.row.give_invited_to_teach_border
+										.two.columns
+											=link_to "#{course.number}", course_path(course)
+										.three.columns
+											=course.name
+										.two.columns
+											=course.term
+										.three.columns
+											- invited_by = User.find(invited_teacher.invited_by)
+											= link_to "#{invited_by.firstname} #{invited_by.lastname}", user_path(invited_by)
+										.two.columns
+											=link_to "&#10004".html_safe, join_as_teacher_path(:id => course), :class => "small blue button"
+											=link_to "&#x2716".html_safe, decline_teacher_invitation_path(:id => course), :class => "small red button"
+									
+					
 
 .section
 	.row
 .section
 	.row
 		.twelve.columns
-			INVITED TO ENROLL
 		.row
 			.twelve.columns
 				-@courses.each do |course|
@@ -47,49 +59,81 @@
 							-@invited_students = course.invite_students.all
 							-@invited_students.each do |invited_student|
 								-if current_user.email == invited_student.email
-									=link_to "#{course.number}", course_path(course)
-									=course.name
-									=course.term
-									=course.year
-									- invited_by = User.find(invited_student.invited_by)
-									= link_to "#{invited_by.firstname} #{invited_by.lastname}", user_path(invited_by)
-									=link_to "Enroll", join_as_student_path(:id => course)
-									=link_to "Decline", decline_student_invitation_path(:id => course)								
+									- if invited_to_enroll_header_present == 0
+										= render "invited_to_enroll_header.html.haml"
+										-invited_to_enroll_header_present = 1
+									.row.give_invited_to_enroll_border
+										.two.columns								
+											=link_to "#{course.number}", course_path(course)
+										.three.columns
+											=course.name
+										.two.columns
+											=course.term
+										.three.columns
+											- invited_by = User.find(invited_student.invited_by)
+											= link_to "#{invited_by.firstname} #{invited_by.lastname}", user_path(invited_by)
+										.two.columns
+											=link_to "&#10004".html_safe, join_as_student_path(:id => course), :class => "small blue button"
+											=link_to "&#x2716".html_safe, decline_student_invitation_path(:id => course), :class => "small red button"						
 .section
 	.row
 .section
 	.row
 		.twelve.columns
-			ACTIVE COURSES
 		.row
 			.twelve.columns
-				ACTIVE COURSES AS TEACHER
 				-@courses.each do |course|
 					.row
 						.twelve.columns
 							-@teachers = course.teachers.all
 							-@teachers.each do |teacher|
 								-if current_user == teacher
-									=link_to "#{course.number}", course_path(course)
-									=course.name
-									=course.term
-									=course.year
-									=course.invitation_code_student
-									=course.invitation_code_teacher
+									- if teacher_header_present == 0
+										= render "teacher_header.html.haml"
+										-teacher_header_present = 1
+									.row.give_teacher_border
+										.two.columns
+											=link_to "#{course.number}", course_path(course)
+										.three.columns
+											=course.name
+										.two.columns
+											=course.term
+										.two.columns
+											%strong=course.invitation_code_student
+										.two.columns
+											%strong=course.invitation_code_teacher
+										.one.columns
+											=link_to "COURSE", course_path(course), :class => "small blue button"
+
+.section
+	.row
+.section
+	.row
+		.twelve.columns
 		.row
 			.twelve.columns
-				ACTIVE COURSES AS STUDENT
 				-@courses.each do |course|
 					.row
 						.twelve.columns
 							-@students = course.students.all
 							-@students.each do |student|
 								-if current_user == student
-									=link_to "#{course.number}", course_path(course)
-									=course.name
-									=course.term
-									=course.year
-									- if course.active
-										=link_to "#{course.teachers.first.firstname} #{course.teachers.first.lastname}", user_path(course.teachers.first)
+									- if student_header_present == 0
+										= render "student_header.html.haml"
+										-student_header_present = 1
+									.row.give_student_border
+										.two.columns
+											=link_to "#{course.number}", course_path(course)
+										.three.columns
+											=course.name
+										.two.columns
+											=course.term
+										.three.columns
+											- if course.active == TRUE
+												=link_to "#{course.teachers.first.firstname} #{course.teachers.first.lastname}", user_path(course.teachers.first)
+											-else
+												%em NO TEACHER 
+										.two.columns
+											=link_to "COURSE", course_path(course), :class => "small blue button"
 
 

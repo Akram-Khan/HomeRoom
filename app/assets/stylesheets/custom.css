@@ -146,3 +146,84 @@ div.logout_popup .logout_popup_content{
 .give_right_border {
   border-right: 1px solid black;
 }
+
+/*Round Corners*/
+
+.round{
+  
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+   border-radius: 10px;
+}
+
+/*Making only the top right and top left corner round*/
+.round-border{
+  
+  -moz-border-radius: 5px 5px 0 0;
+  -webkit-border-radius: 5px 5px 0 0;
+   border-radius: 5px 5px 0 0;
+}
+
+.invite_to_teach_header_band {
+  padding:5px;
+  background-color:#21610B;
+  color:white;
+  font-size:110%;
+}
+
+.give_invited_to_teach_border {
+  border-top:0px;
+  border-right: 1px solid #21610B;
+  border-bottom: 1px solid #21610B;
+  border-left: 1px solid #21610B;
+  padding :10px 4px 10px 4px;
+  margin-top:-1px;
+}
+
+.invite_to_enroll_header_band {
+  padding:5px;
+  background-color:#00BFFF;
+  color:black;
+  font-size:110%;
+}
+
+.give_invited_to_enroll_border {
+  border-top:0px;
+  border-right: 1px solid #00BFFF;
+  border-bottom: 1px solid #00BFFF;
+  border-left: 1px solid #00BFFF;
+  padding :10px 4px 10px 4px;
+  margin-top:-1px;
+}
+
+.teacher_header_band {
+  padding:5px;
+  background-color:#F2F2F2;
+  color:black;
+  font-size:110%;
+}
+
+.give_teacher_border {
+  border-top:0px;
+  border-right: 1px solid #F2F2F2;
+  border-bottom: 1px solid #F2F2F2;
+  border-left: 1px solid #F2F2F2;
+  padding :10px 4px 10px 4px;
+  margin-top:-1px;
+}
+
+.student_header_band {
+  padding:5px;
+  background-color:#CEECF5;
+  color:black;
+  font-size:110%;
+}
+
+.give_student_border {
+  border-top:0px;
+  border-right: 1px solid #CEECF5;
+  border-bottom: 1px solid #CEECF5;
+  border-left: 1px solid #CEECF5;
+  padding :10px 4px 10px 4px;
+  margin-top:-1px;
+}
