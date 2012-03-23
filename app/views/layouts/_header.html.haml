@@ -15,6 +15,6 @@
 					=render :partial => "devise/sessions/new"
 		-else
 			.three.columns.logout.section.logout_popup
-				=link_to "#{current_user.firstname[0].upcase}. #{current_user.lastname.upcase}▼", "#"
+				%strong=link_to "#{current_user.firstname[0].upcase}. #{current_user.lastname.upcase}▼", "#"
 				.logout_popup_content
-					=render :partial => "users/logout"
+					%em=render :partial => "users/logout"
