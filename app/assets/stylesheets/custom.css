@@ -25,12 +25,8 @@ html, body {
   z-index: 1;
 }
 
-.main-content{
-
-}
-
-.footer{
-z-index: 20;
+#all_content{
+  min-height: 93%;
 }
 
 .login{
@@ -56,6 +52,7 @@ z-index: 20;
 
 .footer{
   background-color: black;
+  position: relative;
 }
 
 /*Searchbox */
