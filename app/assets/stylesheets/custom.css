@@ -233,6 +233,10 @@ div.logout_popup .logout_popup_content{
   padding-right: 200px;
 }
 
+#page1 h2,#page2 h2,#page3 h2,#page4 h2,#page5 h2, #page6 h2{
+  color: #E6E6E6;
+}
+
 
 .leftMenu{
   position: absolute;
