@@ -11,7 +11,9 @@
 <body>
 
 <div id = "all_content">
-	<%=render  "layouts/header"%>
+	<div class = "header">
+		<%=render  "layouts/header"%>
+	</div>
 	<%flash.each do |key,value|%>
 	    <div class="section">
 	      <div class="row">
@@ -20,10 +22,7 @@
 	    </div>
   	<%end%>
 	<%= yield %>
-	 <div class="clearfooter"></div>
-</div>
 
-<div id="custom_footer">
 	<%=render "layouts/footer"%>
 </div>
 

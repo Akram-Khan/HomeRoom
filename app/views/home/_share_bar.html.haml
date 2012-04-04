@@ -1,0 +1,16 @@
+.rightMenu
+	.share_bar
+		.rightMenuOff
+			Share
+			=link_to (image_tag "share_button.png"), "#"
+		.rightMenuOn
+			%ul
+				%li
+					.twitter_share
+						%a.popup{:href=>"https://twitter.com/intent/tweet?text=@homeroom9 is the new classroom. http://www.homeroom9.com"}
+							=image_tag "twitter_share.png"
+						%script{:src => "http://platform.twitter.com/widgets.js", :type => "text/javascript"}
+				%li
+					.facebook_share
+						%a{:href=>"http://www.facebook.com/share.php?u=http://www.homeroom9.com", :target => "_blank"}
+							=image_tag "facebook_share.png"

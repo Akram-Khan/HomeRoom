@@ -1,16 +1,35 @@
-.section
-	.row
-.section
-	.row
-.section
-	.row
-.section
-	.row
-.section
-	.row
-.section
+.welcome_screen
 	.row
 		.four.columns
-		.seven.columns
-			=link_to "SIGN UP", signup_path, :class => "large blue button"
-		
+			=render "signup"
+		.eight.columns
+			=image_tag "daw.jpg"
+
+#wrapper_wide
+	#wrapper
+		=render "nav"
+		=render "share_bar"
+		#page1									
+			%a{:name => "Home"}
+			=render "home"
+
+		#page2
+			%a{:name => "Kind_Words"}
+			=render "kind_words"
+
+		#page3
+			%a{:name => "Gallery"}
+			=render "gallery"
+
+		#page4
+			%a{:name => "Team"}
+			=render "team"
+
+		#page5
+			%a{:name => "Jobs"}
+			=render "jobs"
+
+		#page6
+			%a{:name => "Press_Kit"}
+			=render "press_kit"
+		#end
