@@ -9,7 +9,7 @@ html, body {
 
 .header{
   background-color: black;
-  height: 53px;
+  height: 45px;
   width: 100%;
   position: fixed;
   z-index: 6;
@@ -229,21 +229,18 @@ div.logout_popup .logout_popup_content{
 
 #page1,#page2,#page3,#page4,#page5,#page6{
   height: 800px;
-  padding-left: 150px;
-  padding-right: 200px;
+  padding-top: 25px;
 }
 
 #page1 h2,#page2 h2,#page3 h2,#page4 h2,#page5 h2, #page6 h2{
   color: #E6E6E6;
 }
 
-
 .leftMenu{
   position: absolute;
   color: #7d7d7d;
   height: 300px;
   width: 155px;
-  left: 5px;
   top: 35px;
   z-index: 5;
 }
@@ -263,7 +260,6 @@ div.logout_popup .logout_popup_content{
 .rightMenu {
   color: #7D7D7D;
   height: 300px;
-  right: 5px;
   position: absolute;
   top: 35px;
   width: 155px;
@@ -302,16 +298,16 @@ div.logout_popup .logout_popup_content{
 }
 
 #wrapper_wide{
+  margin-top: 420px;
   background-color: black;
   z-index: 5;
   position: relative;
 }
 
 #wrapper{
-  margin-top: 420px;
   padding: 30px 0 30px;
   position: relative;
-  z-index: 2;
+  z-index: 1;
 }
 
 .anchor{

@@ -6,33 +6,35 @@
 			=image_tag "daw.jpg"
 
 
-
 #wrapper_wide
 	.row
 		#wrapper
-			=render "nav"
-			=render "share_bar"
-			#page1									
-				%a{:name => "Home"}
-				=render "home"
+			.two.columns
+				=render "nav"
+			.eight.columns
+				#page1									
+					%a{:name => "Home"}
+					=render "home"
 
-			#page2
-				%a{:name => "Kind_Words"}
-				=render "kind_words"
+				#page2
+					%a{:name => "Kind_Words"}
+					=render "kind_words"
 
-			#page3
-				%a{:name => "Gallery"}
-				=render "gallery"
+				#page3
+					%a{:name => "Gallery"}
+					=render "gallery"
 
-			#page4
-				%a{:name => "Team"}
-				=render "team"
+				#page4
+					%a{:name => "Team"}
+					=render "team"
 
-			#page5
-				%a{:name => "Jobs"}
-				=render "jobs"
+				#page5
+					%a{:name => "Jobs"}
+					=render "jobs"
 
-			#page6
-				%a{:name => "Press_Kit"}
-				=render "press_kit"
-			#end
+				#page6
+					%a{:name => "Press_Kit"}
+					=render "press_kit"
+				#end
+			.two.columns
+				=render "share_bar"

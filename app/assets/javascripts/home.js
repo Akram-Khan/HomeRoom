@@ -23,19 +23,19 @@
      currentmenu = checkMenu(currentmenu,anchorClick);
      if($(window).scrollTop() > $('#home-section').offset().top-75 && leftmenu == "absolute"){
        leftmenu = "fixed";
-       $('.leftMenu').css("position","fixed").css("top","75px").css("left",$('#wrapper').offset().left+5);
-       $('.rightMenu').css("position","fixed").css("top","75px").css("left",$('#wrapper').offset().right-5);
+       $('.leftMenu').css("position","fixed").css("top","75px").css("left",$('#wrapper').offset().left);
+       $('.rightMenu').css("position","fixed").css("top","75px").css("left",$('#wrapper').offset().right);
      }
      else if($(window).scrollTop() < $('#home-section').offset().top-75 && leftmenu == "fixed"){
        leftmenu = "absolute";
        $('.leftMenu').css("position","absolute").css("top","35px").css("left","5px");
-       $('.rightMenu').css("position","absolute").css("top","35px").css("left","auto").css("right","5px");
+       $('.rightMenu').css("position","absolute").css("top","35px").css("left","auto");
      }
    });
    $(window).bind("resize", function(){
       if(leftmenu == "fixed"){
-        $('.leftMenu').css("position","fixed").css("top","75px").css("left",$('#wrapper').offset().left+5);
-        $('.rightMenu').css("position","fixed").css("top","75px").css("left",$('#wrapper').offset().right-5);
+        $('.leftMenu').css("position","fixed").css("top","75px").css("left",$('#wrapper').offset().left);
+        $('.rightMenu').css("position","fixed").css("top","75px").css("left",$('#wrapper').offset().right);
       }
    });
    /* check starting state */
