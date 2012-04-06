@@ -9,7 +9,8 @@
 				=submit_tag "JOIN", :class => "small blue button"
 		
 		-if current_user.blank?
-			.two.columns.login.login_popup
+			.one.columns
+			.one.columns.login.login_popup
 				=link_to "LOGIN", "#"
 				.login_popup_content.shadow
 					=render :partial => "devise/sessions/new"
