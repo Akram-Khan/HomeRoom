@@ -102,7 +102,9 @@ class CoursesController < ApplicationController
 
 	def show
 		@course = Course.find(params[:id])
+		@courses = Course.all
 		@student = @course.students.build
+		@note_comment = @course.comments.build
 	end
 
 	def create

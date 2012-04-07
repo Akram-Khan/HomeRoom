@@ -1,0 +1,11 @@
+.content
+	.row
+		.speech
+			=form_for(@note = Note.new, :url => course_notes_path(@course), :validate => true, :html => {:multipart => true}) do |f|
+				.eight.columns
+					=f.text_area :note, :placeholder => "Note", :rows => "5"
+					=f.hidden_field :user_id, :value => current_user.id
+					=f.hidden_field :course_id, :value => @course.id
+				.two.columns
+				.two.columns
+					=f.submit :class => "small black button", :value => "post note"

@@ -344,3 +344,85 @@ div.logout_popup .logout_popup_content{
   float: right;
   display: inline;
 }
+
+.content{
+  margin-top :55px;
+}
+
+.user-info{
+  margin-top: 45px;
+  padding-top: 15px;
+  background-color: black;
+  color: #E6E6E6;
+}
+
+.user-info .nine.columns{
+  padding-top: 20px;
+}
+
+.speech
+{
+  position: relative;
+  min-height: 100px;
+  background-color: #fff;
+  border: 2px solid #E6E6E6;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  -webkit-box-shadow: 2px 2px 4px #888;
+  -moz-box-shadow: 2px 2px 4px #888;
+  box-shadow: 2px 2px 4px #888;
+  padding: 10px;
+}
+
+.header-items{
+  
+}
+
+.header-items ul li{
+  float: left;
+  margin-left: 15px;
+  display: inline;
+}
+
+.share-items{
+  border-top: 2px solid #E6E6E6;
+  border-bottom: 2px solid #E6E6E6;
+  background-color: #F2F2F2;
+  padding: 10px;
+}
+
+.share-items a{
+  color: black;
+}
+
+.share-items a:hover{
+  color: #01A9DB;
+}
+
+.share-items ul li{
+  float: left;
+  margin-left: 15px;
+  display: inline;
+}
+
+.list-courses{
+  background-color: #F2F2F2;
+  padding: 5px;
+}
+
+.username-color{
+  color: #01A9DB;
+}
+
+.stream-data{
+  margin: 0 10px 0 10px;
+}
+
+.leftpanel-courselist a{
+  color: black; 
+}
+
+.note-form{
+  display: non;
+}

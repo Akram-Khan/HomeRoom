@@ -1,10 +1,11 @@
-.section
-	.row
-		.twelve.columns
-			%h4 Change your password
-			=semantic_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }, :validate => true) do |f|
-				=f.inputs do
-					=f.hidden_field :reset_password_token
-					=f.input :password, :label => "New password"
-				=f.buttons do
-					=f.commit_button :button_html => {:class => "small radius nice green button"}, :label => "Change my password"
+.content
+	.section
+		.row
+			.twelve.columns
+				%h4 Change your password
+				=semantic_form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }, :validate => true) do |f|
+					=f.inputs do
+						=f.hidden_field :reset_password_token
+						=f.input :password, :label => "New password"
+					=f.buttons do
+						=f.commit_button :button_html => {:class => "small radius nice green button"}, :label => "Change my password"

@@ -16,4 +16,9 @@ class Course < ActiveRecord::Base
 
     has_many :invite_teachers, :dependent => :destroy
     has_many :invite_students, :dependent => :destroy
+    has_many :notes, :dependent => :destroy
+    has_many :comments, :through => :notes
+
+    accepts_nested_attributes_for :notes
+
 end

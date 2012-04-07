@@ -1,39 +1,40 @@
-.section
-	.row
-		.ten.columns.form_background
-			.section
-				.row
-			.section
-				.row
-					.eight.columns.centered
-						%h3 Invite your students to join the course
-			%hr
-			.section
-				.row
-					.seven.columns.give_right_border
-						= form_for(@invite_student, :url => course_invite_students_path(@course), :html => {:multipart => true}) do |f|
-							.twelve.columns.centered
-								.section
-									.row
-										.two.columns
-										.ten.columns
-											%strong=f.label :invite_by_email, "Email Addresses (separate multiple addresses by commas)"
-											=f.text_area :email, :placeholder => "Email Addresses (separate multiple addresses by commas)", :rows => "10", :class => "custom_textarea_no_width"
-									.row
-										.two.columns
-										.four.columns
-											=f.submit :class => "small black button", :value => "Invite Students"
-										.four.columns
-											=link_to "Go to Course", course_path(@course), :class => "small blue button"
-										.two.columns
-											=link_to "Dashboard", dashboard_path, :class => "small white button"
-					.five.columns
-						.section
-							.row
-								.one.columns
-								.eleven.columns
-									%p
-										Share this code with your students to give them access to your course:
-							.row
-								.five.columns.centered
-									%h2=@course.invitation_code_student
+.content
+	.section
+		.row
+			.ten.columns.form_background
+				.section
+					.row
+				.section
+					.row
+						.eight.columns.centered
+							%h3 Invite your students to join the course
+				%hr
+				.section
+					.row
+						.seven.columns.give_right_border
+							= form_for(@invite_student, :url => course_invite_students_path(@course), :html => {:multipart => true}) do |f|
+								.twelve.columns.centered
+									.section
+										.row
+											.two.columns
+											.ten.columns
+												%strong=f.label :invite_by_email, "Email Addresses (separate multiple addresses by commas)"
+												=f.text_area :email, :placeholder => "Email Addresses (separate multiple addresses by commas)", :rows => "10", :class => "custom_textarea_no_width"
+										.row
+											.two.columns
+											.four.columns
+												=f.submit :class => "small black button", :value => "Invite Students"
+											.four.columns
+												=link_to "Go to Course", course_path(@course), :class => "small blue button"
+											.two.columns
+												=link_to "Dashboard", dashboard_path, :class => "small white button"
+						.five.columns
+							.section
+								.row
+									.one.columns
+									.eleven.columns
+										%p
+											Share this code with your students to give them access to your course:
+								.row
+									.five.columns.centered
+										%h2=@course.invitation_code_student

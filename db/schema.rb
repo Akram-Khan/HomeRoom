@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120319151819) do
+ActiveRecord::Schema.define(:version => 20120407053953) do
+
+  create_table "comments", :force => true do |t|
+    t.text     "comment"
+    t.integer  "note_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "comments", ["note_id"], :name => "index_comments_on_note_id"
+  add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "courses", :force => true do |t|
     t.string   "number"
@@ -30,7 +41,6 @@ ActiveRecord::Schema.define(:version => 20120319151819) do
   create_table "invite_students", :force => true do |t|
     t.text     "email"
     t.integer  "course_id"
-    t.integer  "invited_by"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -42,13 +52,23 @@ ActiveRecord::Schema.define(:version => 20120319151819) do
     t.string   "firstname"
     t.string   "lastname"
     t.integer  "course_id"
-    t.integer  "invited_by"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "invite_teachers", ["course_id"], :name => "index_invite_teachers_on_course_id"
   add_index "invite_teachers", ["email"], :name => "index_invite_teachers_on_email"
+
+  create_table "notes", :force => true do |t|
+    t.text     "note"
+    t.integer  "course_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "notes", ["course_id"], :name => "index_notes_on_course_id"
+  add_index "notes", ["user_id"], :name => "index_notes_on_user_id"
 
   create_table "roles", :force => true do |t|
     t.string   "name"
