@@ -56,9 +56,13 @@
 							%strong
 								%em=note.note
 							.row
-								=form_for [@course,note,@note_comment] do |f|
-									=f.hidden_field :note_id, :value => note.id
-									=f.hidden_field :user_id, :value => current_user.id
-									=f.text_field :comment
-									=f.submit 
+								-if note.comments.exists?
+									-note.comments.each do |comment|
+										=comment.user.firstname
+										=comment.comment
+								.note-comment-form
+									=form_for [@course,note,@note_comment] do |f|
+										=f.hidden_field :note_id, :value => note.id
+										=f.text_field :comment
+										=f.submit 
 						%hr
