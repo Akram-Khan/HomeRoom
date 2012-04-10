@@ -11,7 +11,17 @@
 		#wrapper
 			.two.columns
 				=render "nav"
+<<<<<<< HEAD
 			.nine.columns
+=======
+			.eight.columns
+				-flash.each do |key,value|
+					.flash
+						-key
+
+					.alert-box
+						=value
+>>>>>>> stream
 				#page1									
 					%a{:name => "Home"}
 					=render "home"

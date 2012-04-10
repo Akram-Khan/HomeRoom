@@ -1,35 +1,40 @@
-.section
-	.row
-		.ten.columns.form_background
-			.section
-				.row
-			.section
-				.row
+.content
+	.section
+		.row
+			.twelve.columns.form_background
+				.section
+					.row
+				.section
+					.row
+						.seven.columns.centered
+							%h3 Invite This Course's Teacher
+				%hr
+				= form_for(@invite_teacher, :url => course_invite_teachers_path(@course), :html => {:multipart => true}, :validate => true) do |f|
 					.seven.columns.centered
-						%h3 Invite This Course's Teacher
-			%hr
-			= form_for(@invite_teacher, :url => course_invite_teachers_path(@course), :html => {:multipart => true}, :validate => true) do |f|
-				.seven.columns.centered
-					.section
-						.row
-							.three.columns
-							.six.columns
-								%strong=f.label :firstname, "Teacher's First Name"
-								=f.text_field :firstname, :placeholder => "Teacher's First Name", :class => "custom_textarea"
-						.row
-							.three.columns
-							.six.columns
-								%strong=f.label :lastname, "Teacher's Last Name"
-								=f.text_field :lastname, :placeholder => "Teacher's Last Name", :class => "custom_textarea"
-						.row
-							.three.columns
-							.eight.columns
-								%strong=f.label :email, "Teacher's Email"
-								=f.text_field :email, :placeholder => "Teacher's Email", :class => "custom_textarea"
-					.section
-						.row
-							.two.columns
-							.five.columns
-								=f.submit :class => "medium black button", :value => "Invite Teacher"
-							.five.columns
-								=link_to "Go back to Dashboard", dashboard_path, :class => "small white button"
+						.section
+							.row
+								.three.columns
+								.six.columns
+									%strong=f.label :firstname, "Teacher's First Name"
+									=f.text_field :firstname, :placeholder => "Teacher's First Name", :class => "custom_textarea"
+								.three.columns
+							.row
+								.three.columns
+								.six.columns
+									%strong=f.label :lastname, "Teacher's Last Name"
+									=f.text_field :lastname, :placeholder => "Teacher's Last Name", :class => "custom_textarea"
+								.three.columns
+							.row
+								.three.columns
+								.six.columns
+									%strong=f.label :email, "Teacher's Email"
+									=f.text_field :email, :placeholder => "Teacher's Email", :class => "custom_textarea"
+								.three.columns
+						.section
+							.row
+								.two.columns
+								.three.columns
+									=f.submit :class => "small black button", :value => "Invite Teacher"
+								.four.columns
+									=link_to "Go to Dashboard", dashboard_path, :class => "small white button"
+								.one.columns

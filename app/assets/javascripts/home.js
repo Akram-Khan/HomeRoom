@@ -12,7 +12,7 @@
      currentmenu = $(this).attr("id");
      changeMenu(currentmenu);
      if(currentmenu == "home"){
-      $('html,body').animate({scrollTop: 0}, 500, function() { anchorClick = false; }); 
+      $('html,body').animate({scrollTop: 0}, 500, function() {anchorClick = false; }); 
      }
      else {
        $('html,body').animate({scrollTop: $('#'+currentmenu+'-section').offset().top}, 500, function() { anchorClick = false; });
@@ -28,14 +28,14 @@
      }
      else if($(window).scrollTop() < $('#home-section').offset().top-75 && leftmenu == "fixed"){
        leftmenu = "absolute";
-       $('.leftMenu').css("position","absolute").css("top","35px").css("left","5px");
-       $('.rightMenu').css("position","absolute").css("top","35px").css("left","auto");
+       $('.leftMenu').css("position","absolute").css("top","35px").css("left","0px");
+       $('.rightMenu').css("position","absolute").css("top","35px").css("text-align", "right").css("left","auto").css("text-align", "right");
      }
    });
    $(window).bind("resize", function(){
       if(leftmenu == "fixed"){
         $('.leftMenu').css("position","fixed").css("top","75px").css("left",$('#wrapper').offset().left);
-        $('.rightMenu').css("position","fixed").css("top","75px").css("left",$('#wrapper').offset().right);
+        $('.rightMenu').css("position","fixed").css("top","75px").css("text-align", "right").css("left",$('#wrapper').offset().right);
       }
    });
    /* check starting state */

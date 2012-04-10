@@ -1,6 +1,7 @@
-.container
-	.row
-		.twelve.columns
-			%h3= @title
-			- @students.each do |student|
-				=link_to "#{student.firstname}", student
+.content
+	.section
+		.row
+			.twelve.columns
+				%h3= @title
+				- @students.each do |student|
+					=link_to "#{student.firstname}", student

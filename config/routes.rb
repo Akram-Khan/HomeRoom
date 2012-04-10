@@ -1,7 +1,5 @@
 Homeroom::Application.routes.draw do
 
-  get "invite_students/new"
-
   devise_for :users, :controllers => {:omniauth_callbacks => "users/omniauth_callbacks", :sessions => "sessions", :passwords => "passwords", :registrations => "registrations"} do
     get "signup", :to => "registrations#new"
     get "login", :to => "sessions#new"
@@ -22,6 +20,9 @@ Homeroom::Application.routes.draw do
     member do
       get :students
       get :teachers
+    end
+    resources :notes do
+      resources :comments
     end
   end
 

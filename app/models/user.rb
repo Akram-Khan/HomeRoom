@@ -15,12 +15,17 @@ class User < ActiveRecord::Base
   validates :firstname, :presence   => true, 
                         :length     => { :within => 1..50},
                         :format => {:with => firstname_regex, :message => "Only English language letters allowed" }
+
   validates :lastname,  :presence   => true, 
                         :length     => { :within => 1..30 },
                         :format => {:with => lastname_regex, :message => "Only English language letters allowed" }
 
+  validates_confirmation_of :password
+
   has_many :roles, :dependent => :destroy
   has_many :courses, :through => :roles
+  has_many :notes, :dependent => :destroy
+  has_many :comments, :dependent => :destroy
 
   def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
     data = access_token.extra.raw_info
@@ -30,4 +35,5 @@ class User < ActiveRecord::Base
       #User.create!(:email => data.email, :password => Devise.friendly_token[0,20], :firstname => "stub", :lastname => "stub") 
     end
   end
+
 end

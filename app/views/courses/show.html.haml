@@ -1,22 +1,74 @@
+.user-info		
+	.row
+		.two.columns
+			=image_tag "no-image.jpg"
+		.nine.columns
+			%strong="#{current_user.firstname} #{current_user.lastname} #{@context.capitalize} of #{@course.name}"
 .section
 	.row
+		=render "course_header"
+	%hr
+
 .section
 	.row
+		.two.columns.leftpanel-courselist
+			%ul
+				%li(class="list-courses") 
+					%strong All COURSES
+				-current_user.courses.each do |course|
+					%li=link_to course.name, course_path(course)
+					%hr
+		.seven.columns.share-items
+			%ul
+				%li
+					%strong POST:
+				%li(class="current note")
+					=link_to "NOTE", "#"
+				%li
+					=link_to "LINK", "#"
+				%li
+					=link_to "MEDIA", "#"
+				%li
+					=link_to "FILE", "#"
+				%li
+					=link_to "QUESTION", "#"
+				%li
+					=link_to "BLOG", "#"
+			.note-form
+				=render :template => "notes/new"
+		.two.columns
+			%ul
+				%li(class="list-courses")
+					%strong ALL POSTS
+
 .section
 	.row
-.section
-	.row
-.section
-	.row
-.section
-	.row
-		.four.columns
-		.seven.columns
-			I am a #{@context.capitalize} of this course
-.section
-	.row
-.section
-	.row
-		.four.columns
-		.seven.columns
-			%h5 THIS IS COURSE STREAM (TASK 2)
+		.two.columns
+		.eight.columns.stream-data
+			-@course.notes.each do |note|
+				.section
+					.row
+						.two.columns
+							=image_tag "no-image.jpg"
+						.two.columns.username-color
+							%strong=note.user.firstname + " " + note.user.lastname
+						.eight.columns
+							%strong
+								%em=note.note
+						.one.columns.note-comment-link
+							=link_to "Comment", "#"
+						.row
+							-if note.comments.exists?
+								-note.comments.each do |comment|
+									%ul
+										%li(class="username-color")
+											%strong=comment.user.firstname
+										%li
+											%strong
+												%em=comment.comment
+							.note-comment-form
+								=form_for [@course,note,@note_comment] do |f|
+									=f.hidden_field :note_id, :value => note.id
+									=f.text_field :comment
+									=f.submit 
+						%hr
