@@ -3,11 +3,9 @@
 		.four.columns
 			=link_to logo, root_url
 		-if current_user.blank?
-<<<<<<< HEAD
 			.one.columns
 			.one.columns.login.login_popup
 				=link_to "LOGIN", "#"
-=======
 			.three.columns
 			.four.columns.padding_5_px
 				=form_tag "/join_by_invitation_code", :method =>"get" do
@@ -17,7 +15,6 @@
 			.one.columns.login_popup
 				.login
 					=link_to "LOGIN", "#"
->>>>>>> stream
 				.login_popup_content.shadow
 					=render :partial => "devise/sessions/new"
 		-else
