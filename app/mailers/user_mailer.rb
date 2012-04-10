@@ -1,8 +1,7 @@
 class UserMailer < ActionMailer::Base
   default :from => "admin@akaruilabs.com"
-  #default_url_options[:host] = "http://footyaddicts.co.uk"
   default_url_options[:host] = "cold-light-2231.heroku.com"
-
+ 
   def course_created_by_student(firstname, lastname, email, course)
   	@firstname = firstname
   	@lastname = lastname

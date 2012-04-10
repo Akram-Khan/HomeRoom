@@ -2,7 +2,12 @@
 -invited_to_enroll_header_present = 0
 -teacher_header_present = 0
 -student_header_present = 0
+
 .content
+	.section
+		.row
+	.section
+		.row
 	.section
 		.row
 	.section
@@ -14,8 +19,8 @@
 			.three.columns
 			.eight.columns
 				=link_to "CREATE A HOMEROOM COURSE", new_course_path, :class => "large blue button"
-
-	.section
+			.one.columns
+	.section		
 		.row
 	.section
 		.row
@@ -44,9 +49,7 @@
 											.two.columns
 												=link_to "&#10004".html_safe, join_as_teacher_path(:id => course), :class => "small blue button"
 												=link_to "&#x2716".html_safe, decline_teacher_invitation_path(:id => course), :class => "small red button"
-										
-						
-
+							
 	.section
 		.row
 	.section
@@ -80,31 +83,31 @@
 		.row
 	.section
 		.row
+			
 			.twelve.columns
-			.row
-				.twelve.columns
-					-@courses.each do |course|
-						.row
-							.twelve.columns
-								-@teachers = course.teachers.all
-								-@teachers.each do |teacher|
-									-if current_user == teacher
-										- if teacher_header_present == 0
-											= render "teacher_header.html.haml"
-											-teacher_header_present = 1
-										.row.give_teacher_border
-											.two.columns
-												=link_to "#{course.number}", course_path(course)
-											.three.columns
-												=course.name
-											.two.columns
-												=course.term
-											.two.columns
-												%strong=course.invitation_code_student
-											.two.columns
-												%strong=course.invitation_code_teacher
-											.one.columns
-												=link_to "COURSE", course_path(course), :class => "small blue button"
+				-@courses.each do |course|
+					.row
+						.twelve.columns
+							-@teachers = course.teachers.all
+							-@teachers.each do |teacher|
+								-if current_user == teacher
+									- if teacher_header_present == 0
+										= render "teacher_header.html.haml"
+										-teacher_header_present = 1
+									.row.give_teacher_border
+										.two.columns
+											=link_to "#{course.number}", course_path(course)
+										.three.columns
+											=course.name
+										.one.columns
+											=course.term
+										.two.columns
+											%strong=course.invitation_code_student
+										.two.columns
+											%strong=course.invitation_code_teacher
+										.one.columns
+											=link_to "COURSE", course_path(course), :class => "small blue button"
+										.one.columns
 
 	.section
 		.row
@@ -136,5 +139,6 @@
 													%em NO TEACHER 
 											.two.columns
 												=link_to "COURSE", course_path(course), :class => "small blue button"
-
-
+	
+	.section
+		.row

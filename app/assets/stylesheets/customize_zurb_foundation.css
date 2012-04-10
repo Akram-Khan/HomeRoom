@@ -3,5 +3,17 @@ form label {
 }
 
 form textarea {
-  width: 370px;
+  width: 450px;
 }
+
+.small.button{
+	padding: 10px 20px 9px;
+}
+
+/*Mozilla only CSS
+@-moz-document url-prefix() {
+   .small.button {
+     padding: 8px 20px 6px;
+   }
+}
+*/

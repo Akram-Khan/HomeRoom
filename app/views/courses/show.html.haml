@@ -22,8 +22,8 @@
 			%ul
 				%li
 					%strong POST:
-				%li(class="current")
-					=link_to "NOTE", new_course_note_path(@course)
+				%li(class="current note")
+					=link_to "NOTE", "#"
 				%li
 					=link_to "LINK", "#"
 				%li
@@ -55,14 +55,20 @@
 						.eight.columns
 							%strong
 								%em=note.note
-							.row
-								-if note.comments.exists?
-									-note.comments.each do |comment|
-										=comment.user.firstname
-										=comment.comment
-								.note-comment-form
-									=form_for [@course,note,@note_comment] do |f|
-										=f.hidden_field :note_id, :value => note.id
-										=f.text_field :comment
-										=f.submit 
+						.one.columns.note-comment-link
+							=link_to "Comment", "#"
+						.row
+							-if note.comments.exists?
+								-note.comments.each do |comment|
+									%ul
+										%li(class="username-color")
+											%strong=comment.user.firstname
+										%li
+											%strong
+												%em=comment.comment
+							.note-comment-form
+								=form_for [@course,note,@note_comment] do |f|
+									=f.hidden_field :note_id, :value => note.id
+									=f.text_field :comment
+									=f.submit 
 						%hr

@@ -12,6 +12,12 @@
 			.two.columns
 				=render "nav"
 			.eight.columns
+				-flash.each do |key,value|
+					.flash
+						-key
+
+					.alert-box
+						=value
 				#page1									
 					%a{:name => "Home"}
 					=render "home"

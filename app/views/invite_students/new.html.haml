@@ -1,7 +1,7 @@
 .content
 	.section
 		.row
-			.ten.columns.form_background
+			.twelve.columns.form_background
 				.section
 					.row
 				.section
@@ -16,19 +16,20 @@
 								.twelve.columns.centered
 									.section
 										.row
-											.two.columns
-											.ten.columns
+											.one.columns
+											.eleven.columns
 												%strong=f.label :invite_by_email, "Email Addresses (separate multiple addresses by commas)"
 												=f.text_area :email, :placeholder => "Email Addresses (separate multiple addresses by commas)", :rows => "10", :class => "custom_textarea_no_width"
 										.row
-											.two.columns
-											.four.columns
+											.one.columns
+											.three.columns
 												=f.submit :class => "small black button", :value => "Invite Students"
-											.four.columns
+											.three.columns
 												=link_to "Go to Course", course_path(@course), :class => "small blue button"
 											.two.columns
 												=link_to "Dashboard", dashboard_path, :class => "small white button"
-						.five.columns
+											.one.columns
+						.four.columns
 							.section
 								.row
 									.one.columns
@@ -38,3 +39,6 @@
 								.row
 									.five.columns.centered
 										%h2=@course.invitation_code_student
+						.one.columns
+									
+									

@@ -5,6 +5,7 @@
 				%h5 
 					%strong LOGIN
 				%hr
+		.row
 			.five.columns.give_right_border
 				.row
 					.twelve.columns
@@ -16,7 +17,7 @@
 						%ul
 							%li= link_to image_tag("facebook_login_button.png"),user_omniauth_authorize_path(:facebook)
 							%li= render :partial => "devise/shared/links"
-			.seven.columns
+			.five.columns
 				.row
 					.section
 						.row
@@ -31,6 +32,4 @@
 							.three.columns
 							.seven.columns
 								=link_to "SIGN UP", signup_path, :class => "large blue button"
-
-
-
+			.two.columns
