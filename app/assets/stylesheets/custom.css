@@ -23,6 +23,10 @@ html, body {
   padding-top: 5px;
 }
 
+.logo{
+  padding-top: 5px;
+}
+
 /*Second header visible after login*/
 
 .second-header{
