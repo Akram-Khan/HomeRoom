@@ -116,7 +116,7 @@ div.logout_popup {
 
 div.logout_popup .logout_popup_content{
     position: absolute;
-    margin-top: 0px;
+    margin-top: -1px;
     right:10px;
     width: 60px;
     height: 15px;

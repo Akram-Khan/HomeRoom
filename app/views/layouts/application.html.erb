@@ -12,8 +12,9 @@
 
 <div id = "all_content">
 	<%=render  "layouts/header"%>
-	
-	<%=render "layouts/second_header"%>
+	<%unless current_user.blank?%>
+		<%=render "layouts/second_header"%>
+	<%end%>
 	
 	<%unless current_page?(:controller => "/home", :action => "index")%>
 		<%flash.each do |key,value|%>
