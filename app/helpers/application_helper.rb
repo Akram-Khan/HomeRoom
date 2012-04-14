@@ -1,7 +1,7 @@
 module ApplicationHelper
 
   def logo
-  	image_tag "homeroom_logo.jpg", :alt => "Home Room"
+  	image_tag "homeroom_logo.png", :alt => "Home Room"
   end
 
   def resource_name

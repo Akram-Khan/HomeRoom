@@ -7,6 +7,8 @@ html, body {
   margin-top: 15px;
 }
 
+/*Header styling*/
+
 .header{
   background-color: black;
   height: 45px;
@@ -14,15 +16,46 @@ html, body {
   position: fixed;
   z-index: 6;
   top: 0px;
+  border-bottom:1px solid #3880bb;
 }
+
+.header_content{
+  padding-top: 5px;
+}
+
+/*Second header visible after login*/
+
+.second-header{
+  top: 45px;
+  width: 100%;
+  position: fixed;
+  z-index: 6;
+  background-color: #01A9DB;
+}
+
+.second-header a{
+  color: white;
+}
+
+/*Signup button on the welcome screen*/
+
+.homepage-welcome-message{
+  padding-top: 20px;
+}
+
+/*Welcome screen on the homepage*/
 
 .welcome_screen{
   background-color: white;
-  top: 70px;
-  height: 380px;
+  top: 45px;
+  height: 379px;
   width: 100%;
   position: fixed;
   z-index: 1;
+}
+
+.welcome_screen img{
+  float: right;
 }
 
 #all_content{
@@ -37,7 +70,7 @@ html, body {
 /*Login CSS*/
 
 .login{
-  padding-top: 12px;
+  padding-top: 10px;
   text-align: right;
 }
 
@@ -52,7 +85,7 @@ div.login_popup {
 
 div.login_popup .login_popup_content{
     position: absolute;
-    margin-top: 15px;
+    margin-top: 10px;
     top:30px;
     right:0;
     width: 250px;
@@ -67,7 +100,7 @@ div.login_popup .login_popup_content{
 /*Logout CSS*/
 
 .logout{
-  padding-top: 10px;
+  padding-top: 8px;
   text-align: right;
 }
 
@@ -77,7 +110,7 @@ div.login_popup .login_popup_content{
 
 div.logout_popup {
     position: relative;
-    height: 20px;
+    height: 15px;
     color: black;
 }
 
@@ -316,7 +349,7 @@ div.logout_popup .logout_popup_content{
 }
 
 #wrapper_wide{
-  margin-top: 420px;
+  margin-top: 379px;
   background-color: black;
   z-index: 5;
   position: relative;
@@ -365,98 +398,4 @@ div.logout_popup .logout_popup_content{
 
 .content{
   margin-top :55px;
-}
-
-.user-info{
-  margin-top: 45px;
-  padding-top: 15px;
-  background-color: black;
-  color: #E6E6E6;
-}
-
-.user-info .nine.columns{
-  padding-top: 20px;
-}
-
-.speech
-{
-  position: relative;
-  min-height: 100px;
-  background-color: #F2F2F2;
-  border: 2px solid #E6E6E6;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
-  -webkit-box-shadow: 2px 2px 4px #888;
-  -moz-box-shadow: 2px 2px 4px #888;
-  box-shadow: 2px 2px 4px #888;
-  padding: 10px;
-}
-
-.header-items{
-  
-}
-
-.header-items ul li{
-  float: left;
-  margin-left: 15px;
-  display: inline;
-}
-
-.share-items{
-  border-top: 2px solid #E6E6E6;
-  border-bottom: 2px solid #E6E6E6;
-  background-color: #F2F2F2;
-  padding: 10px;
-}
-
-.share-items a{
-  color: black;
-}
-
-.share-items a:hover{
-  color: #01A9DB;
-}
-
-.share-items ul li{
-  float: left;
-  margin-left: 15px;
-  display: inline;
-}
-
-.list-courses{
-  background-color: #F2F2F2;
-  padding: 5px;
-}
-
-.username-color{
-  color: #01A9DB;
-}
-
-.stream-data{
-  margin: 0 10px 0 10px;
-}
-
-.leftpanel-courselist a{
-  color: black; 
-}
-
-.note-form{
-  display: none;
-}
-
-
-.note-comment-form{
-  display: none;
-}
-
-textarea#styled {
-  width: 500px;
-  height: 80px;
-  border: 1px solid #cccccc;
-  padding: 5px;
-  font-family: Tahoma, sans-serif;
-  background-image: url(bg.gif);
-  background-position: bottom right;
-  background-repeat: no-repeat;
 }

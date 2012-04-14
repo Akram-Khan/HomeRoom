@@ -1,27 +1,30 @@
 .header
 	.row
-		.four.columns
-			=link_to logo, root_url
-		-if current_user.blank?
-			.three.columns
-			.four.columns.padding_5_px
-				=form_tag "/join_by_invitation_code", :method =>"get" do
-					=text_field_tag :invitation_code,params[:invitation_code], :placeholder => "INVITATION CODE", :class =>"join"
-					=submit_tag "JOIN", :class => "small blue button"
-		
-			.one.columns.login_popup
-				.login
-					=link_to "LOGIN", "#"
-				.login_popup_content.shadow
-					=render :partial => "devise/sessions/new"
-		-else
-			.one.columns
-			.four.columns.padding_5_px
-				=form_tag "/join_by_invitation_code", :method =>"get" do
-					=text_field_tag :invitation_code,params[:invitation_code], :placeholder => "INVITATION CODE", :class =>"join"
-					=submit_tag "JOIN", :class => "small blue button"
+		.header_content
+			.four.columns
+				=link_to logo, root_url
+			-if current_user.blank?
+				.three.columns
+				.four.columns
+					=form_tag "/join_by_invitation_code", :method =>"get" do
+						=text_field_tag :invitation_code,params[:invitation_code], :placeholder => "INVITATION CODE", :class =>"join"
+						=submit_tag "JOIN", :class => "small blue button"
+			
+				.one.columns.login_popup
+					.login
+						=link_to "LOGIN", "#"
+					.login_popup_content.shadow
+						=render :partial => "devise/sessions/new"
+			-else
+				.row
+					.one.columns
+					.four.columns
+						=form_tag "/join_by_invitation_code", :method =>"get" do
+							=text_field_tag :invitation_code,params[:invitation_code], :placeholder => "INVITATION CODE", :class =>"join"
+							=submit_tag "JOIN", :class => "small blue button"
 
-			.three.columns.logout.logout_popup
-				%strong=link_to "#{current_user.firstname[0].upcase}. #{current_user.lastname.upcase}▼", "#"
-				.logout_popup_content
-					=render :partial => "users/logout"
+					.three.columns.logout.logout_popup
+						%strong=link_to "#{current_user.firstname[0].upcase}. #{current_user.lastname.upcase}▼", "#"
+						.logout_popup_content
+							=render :partial => "users/logout"
+				

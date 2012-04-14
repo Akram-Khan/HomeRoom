@@ -1,27 +1,13 @@
-.user-info		
-	.row
-		.two.columns
-			=image_tag "no-image.jpg"
-		.nine.columns
-			%strong="#{current_user.firstname} #{current_user.lastname} #{@context.capitalize} of #{@course.name}"
 .section
 	.row
 		=render "course_header"
-	%hr
 
 .section
 	.row
-		.two.columns.leftpanel-courselist
-			%ul
-				%li(class="list-courses") 
-					%strong All COURSES
-				-current_user.courses.each do |course|
-					%li=link_to course.name, course_path(course)
-					%hr
-		.seven.columns.share-items
+		.eight.columns.share-items
 			%ul
 				%li
-					%strong POST:
+					POST:
 				%li(class="current note")
 					=link_to "NOTE", "#"
 				%li
@@ -40,10 +26,16 @@
 			%ul
 				%li(class="list-courses")
 					%strong ALL POSTS
+		.two.columns.course-right-pane
+			%ul
+				%li(class="list-courses") 
+					%strong ALL COURSES
+				-current_user.courses.each do |course|
+					%li=link_to course.number, course_path(course)
+				%hr
 
 .section
 	.row
-		.two.columns
 		.eight.columns.stream-data
 			-@course.notes.each do |note|
 				.section
@@ -52,23 +44,30 @@
 							=image_tag "no-image.jpg"
 						.two.columns.username-color
 							%strong=note.user.firstname + " " + note.user.lastname
-						.eight.columns
+						.seven.columns
 							%strong
 								%em=note.note
 						.one.columns.note-comment-link
 							=link_to "Comment", "#"
+					.section
 						.row
-							-if note.comments.exists?
-								-note.comments.each do |comment|
-									%ul
-										%li(class="username-color")
-											%strong=comment.user.firstname
-										%li
-											%strong
-												%em=comment.comment
-							.note-comment-form
-								=form_for [@course,note,@note_comment] do |f|
-									=f.hidden_field :note_id, :value => note.id
-									=f.text_field :comment
-									=f.submit 
-						%hr
+							.one.columns
+							.eleven.columns.comments
+								-if note.comments.exists?
+									-note.comments.each do |comment|
+										%ul
+											%li
+												=image_tag "no-image.jpg"
+											%li(class="username-color")
+												%strong=comment.user.firstname
+											%li
+												%strong
+													%em=comment.comment
+							%hr
+								.content
+									.note-comment-form
+										=form_for [@course,note,@note_comment] do |f|
+											=f.hidden_field :note_id, :value => note.id
+											=f.text_area :comment, :placeholder => "Comment", :rows=> "5",:id => "styled-no-width"
+											=f.submit :class => "small black button",:value => "comment"
+		.two.columns

@@ -1,20 +1,33 @@
-.two.columns
-	%strong="COURSES"
-.eight.columns.header-items
-	%ul
-		%li
-			%strong=link_to "FEED", course_path(@course)
-		%li
-			%strong="CALENDER"
-		%li
-			%strong="MATERIALS"
-		%li
-			%strong="BOOK"
-		%li
-			%strong="SYLLABUS"
-		%li
-			%strong="PEOPLE"
-		%li
-			%strong="GRADES"
-.two.columns
-	%strong="SORT"
+.content
+	.section
+		.row
+			.nine.columns.course-heading
+				%h5.test
+					%strong="#{@course.number} - #{@course.name} - "
+					%em="#{@course.teachers.first.firstname.capitalize} #{@course.teachers.first.lastname.capitalize}"
+			.one.columns
+	.section
+		.row
+			.eight.columns.course-header-items.course-header
+				%ul
+					%li
+						%strong=link_to "FEED", course_path(@course)
+					%li
+						%strong="CALENDER"
+					%li
+						%strong="MATERIALS"
+					%li
+						%strong="BOOK"
+					%li
+						%strong="SYLLABUS"
+					%li
+						%strong="PEOPLE"
+					%li
+						%strong="GRADES"
+				%hr
+			.two.columns.course-header
+				%strong SORT
+				%hr	
+			.two.columns.course-header.course-right-pane
+				%strong OTHER COURSES
+				%hr
