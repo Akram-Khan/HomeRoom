@@ -8,7 +8,7 @@
 			%ul
 				%li
 					POST:
-				%li(class="current note")
+				%li(class="active note")
 					=link_to "NOTE", "#"
 				%li
 					=link_to "LINK", "#"
@@ -41,33 +41,52 @@
 				.section
 					.row
 						.two.columns
-							=image_tag "no-image.jpg"
-						.two.columns.username-color
-							%strong=note.user.firstname + " " + note.user.lastname
-						.seven.columns
-							%strong
-								%em=note.note
-						.one.columns.note-comment-link
-							=link_to "Comment", "#"
-					.section
-						.row
-							.one.columns
-							.eleven.columns.comments
-								-if note.comments.exists?
-									-note.comments.each do |comment|
-										%ul
-											%li
-												=image_tag "no-image.jpg"
-											%li(class="username-color")
-												%strong=comment.user.firstname
-											%li
-												%strong
-													%em=comment.comment
-							%hr
-								.content
-									.note-comment-form
-										=form_for [@course,note,@note_comment] do |f|
-											=f.hidden_field :note_id, :value => note.id
-											=f.text_area :comment, :placeholder => "Comment", :rows=> "5",:id => "styled-no-width"
-											=f.submit :class => "small black button",:value => "comment"
-		.two.columns
+							=link_to (image_tag "no-image.jpg"), user_path(note.user)
+						.post-custom-margin.custom-word-wrap
+							.ten.columns
+								.twelve.columns.username-color
+									%strong=link_to note.user.firstname + " " + note.user.lastname, user_path(note.user)
+								.row
+									.twelve.columns
+										=note.note
+								
+								.section
+									.row.note-comment-link
+										.three.columns.show-comments
+											%span=link_to "+", "#"
+											=link_to " Comments #{note.comments.count}", "#"	
+										.two.columns
+											=link_to "Like", "#" 
+										.one.columns
+								
+									.row.custom-comment.custom-word-wrap
+										.comment-top-margin
+											.twelve.columns.post-custom-margin
+												-if note.comments.exists?
+													.comments
+														-note.comments.each do |comment|
+															.row.cycle-comments{:class => cycle("dark", "light") }
+																.two.columns
+																	=link_to (image_tag "no-image-small.jpg"), user_path(comment.user)
+																.post-custom-margin
+																	.ten.columns
+																		%strong=link_to comment.user.firstname + " " + comment.user.lastname, user_path(comment.user)
+																		=comment.comment
+												
+												
+													.post-comment-form
+														=form_for [@course,note,@note_comment] do |f|
+															=f.hidden_field :note_id, :value => note.id
+															=f.text_field :comment, :placeholder => "Write a Comment ...", :rows=> "5",:class=> "custom-textfield"
+												-else
+													.post-first-comment-form
+														=form_for [@course,note,@note_comment] do |f|
+															=f.hidden_field :note_id, :value => note.id
+															=f.text_field :comment, :placeholder => "Write a Comment ...", :rows=> "5",:class=> "custom-textfield"	
+				-reset_cycle
+																
+				%hr
+		.four.columns
+
+.section
+	.row			

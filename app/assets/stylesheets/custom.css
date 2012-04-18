@@ -7,6 +7,12 @@ html, body {
   margin-top: 15px;
 }
 
+/*Giving large top margin because of fixed header and second header*/
+
+.content{
+  margin-top :65px;
+}
+
 /*Header styling*/
 
 .header{
@@ -398,8 +404,4 @@ div.logout_popup .logout_popup_content{
 .rightMenuOn ul li{
   float: right;
   display: inline;
-}
-
-.content{
-  margin-top :65px;
 }

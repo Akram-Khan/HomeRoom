@@ -10,6 +10,12 @@ form textarea {
 	padding: 10px 20px 9px;
 }
 
+.post-custom-margin{
+	margin-left: 0px;
+	float: none;
+}
+
+
 /*Mozilla only CSS
 @-moz-document url-prefix() {
    .small.button {

@@ -1,3 +1,5 @@
+/*Providing arrow to the post items (notes, links etc ...)*/
+
 .speech
 {
   position: relative;
@@ -12,6 +14,31 @@
   box-shadow: 2px 2px 4px #888;
   padding: 10px;
 }
+
+.speech:before
+{
+  content: ' ';
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: 60px;
+  top: -48px;
+  border: 23px solid;
+  border-color: transparent transparent #E6E6E6 transparent;
+}
+
+.speech:after
+{
+  content: ' ';
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: 64px;
+  top: -36px;
+  border: 18px solid;
+  border-color: transparent transparent #F2F2F2 transparent;
+}
+
 
 /*Course header style*/
 
@@ -62,12 +89,10 @@
   color: #1c1c1c;
 }
 
+/*Giving a color to the username which is showed in a specific course page*/
+
 .username-color{
   color: #01A9DB;
-}
-
-.stream-data{
-  margin: 0 10px 0 20px;
 }
 
 .leftpanel-courselist a{
@@ -75,21 +100,17 @@
 }
 
 .note-form{
-  display: none;
   padding: 0 10px 10px 10px;
+}
+
+.active a{
+  color: #01A9DB;
 }
 
 .note-comment-link{
 }
 
-.note-comment-form{
-  display: none;
-}
-
-.comments ul li{
-  display: inline;
-  padding-left: 10px;
-}
+/*Custom text area with default width and height*/
 
 textarea#styled {
   width: 600px;
@@ -102,6 +123,8 @@ textarea#styled {
   background-repeat: no-repeat;
 }
 
+/*Custom text area without default width and height*/
+
 textarea#styled-no-width {
   border: 1px solid #cccccc;
   padding: 5px;
@@ -111,8 +134,112 @@ textarea#styled-no-width {
   background-repeat: no-repeat;
 }
 
+/*Custom text field with defualt width and height*/
 
+.custom-textfield{
+  height: 28px;
+  width: 505px;
+  border: 1px solid #BDBDBD;
+}
+
+/*Custom text field without default width and height*/
 
 .course-right-pane{
   text-align: right;
+}
+
+/*Giving border to the comments*/
+
+.cycle-comments{
+  border-bottom: 1px solid #F2F2F2;
+  padding: 5px;
+}
+
+/*Cycle effects for odd and even comments*/
+
+.light{
+  background-color: #FAFAFA;
+}
+
+.dark{
+  background-color: #F2F2F2;
+}
+
+/*Breaking the word (if the word is very long it shoots out of the expected width of its column)*/
+.custom-word-wrap{
+  word-wrap: break-word;
+}
+
+/*Displaying Comments*/
+
+.custom-comment{
+  font-size: 90%;
+  display:none;
+}
+
+/*Top Margin to the comments*/
+
+.comment-top-margin{
+  margin-top: 20px;
+}
+
+/*Providing arrow to the comments border*/
+
+.comments{
+  
+  padding-right: 10px;
+}
+
+.comments:after{
+  content: ' ';
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: 14px;
+  top: -28px;
+  border: 15px solid;
+  border-color: transparent transparent #F2F2F2 transparent;
+}
+
+/*Removing the default margin of the form(with comments) and giving it custom padding*/
+
+.post-comment-form{
+  padding: 10px 10px 10px 10px;
+  background-color: #E2E2E2;
+}
+
+.post-comment-form form{
+  margin-bottom: 0px;
+}
+
+/*Removing the custom margin of the form(without comments) and giving it custom padding*/
+
+.post-first-comment-form{
+  padding: 10px 10px 10px 10px;
+  background-color: #E2E2E2;
+}
+
+.post-first-comment-form form{
+  margin-bottom: 0px;
+}
+
+/*Providing arrow to the comments form border*/
+
+.post-first-comment-form:after{
+  content: ' ';
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: 14px;
+  top: -28px;
+  border: 15px solid;
+  border-color: transparent transparent #E2E2E2 transparent;
+}
+
+.teacher-post{
+  background-color: #E0EEF2;
+}
+
+.show-comments{
+  font-weight: bold;
 }

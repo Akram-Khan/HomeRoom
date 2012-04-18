@@ -1,11 +1,15 @@
 .content
 	.section
 		.row
+	.section
+		.row
 			.nine.columns.course-heading
-				%h5.test
+				%h5
 					%strong="#{@course.number} - #{@course.name} - "
 					%em="#{@course.teachers.first.firstname.capitalize} #{@course.teachers.first.lastname.capitalize}"
 			.one.columns
+	.section
+		.row
 	.section
 		.row
 			.eight.columns.course-header-items.course-header
