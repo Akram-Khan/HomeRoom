@@ -9,17 +9,3 @@ $(document).ready(function(){
 	});
 
 });
-
-
-/*
-$(document).ready(function(){
-	$('.note-comment-link').click(function(){
-		$(this).nextAll('.custom-comment').eq(0).toggle();
-	}).toggle(function(){
-		$(this).children('span').text("-");
-		} , function() {
-		$(this).children('span').text("+");
-	});
-
-});
-*/

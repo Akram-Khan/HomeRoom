@@ -223,6 +223,10 @@ textarea#styled-no-width {
   margin-bottom: 0px;
 }
 
+.like-form form{
+  margin-bottom: 0px;
+}
+
 /*Providing arrow to the comments form border*/
 
 .post-first-comment-form:after{

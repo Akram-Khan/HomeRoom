@@ -16,6 +16,7 @@ gem 'devise'
 gem 'pg'
 gem 'formtastic'
 gem "omniauth-facebook"
+gem "will_paginate"
 
 
 # Gems used only for assets and not required

@@ -23,6 +23,7 @@ Homeroom::Application.routes.draw do
     end
     resources :notes do
       resources :comments
+      resources :likes
     end
   end
 

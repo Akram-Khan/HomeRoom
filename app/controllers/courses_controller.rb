@@ -104,7 +104,7 @@ class CoursesController < ApplicationController
 		@course = Course.find(params[:id])
 		@courses = Course.all
 		@student = @course.students.build
-		@note_comment = @course.comments.build
+		@posts = Post.all
 	end
 
 	def create

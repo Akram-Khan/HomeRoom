@@ -11,17 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120407053953) do
+ActiveRecord::Schema.define(:version => 20120419063519) do
 
   create_table "comments", :force => true do |t|
     t.text     "comment"
-    t.integer  "note_id"
+    t.integer  "post_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "comments", ["note_id"], :name => "index_comments_on_note_id"
+  add_index "comments", ["post_id"], :name => "index_comments_on_post_id"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
   create_table "courses", :force => true do |t|
@@ -61,16 +61,32 @@ ActiveRecord::Schema.define(:version => 20120407053953) do
   add_index "invite_teachers", ["course_id"], :name => "index_invite_teachers_on_course_id"
   add_index "invite_teachers", ["email"], :name => "index_invite_teachers_on_email"
 
-  create_table "notes", :force => true do |t|
-    t.text     "note"
-    t.integer  "course_id"
+  create_table "likes", :force => true do |t|
+    t.integer  "post_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "notes", ["course_id"], :name => "index_notes_on_course_id"
-  add_index "notes", ["user_id"], :name => "index_notes_on_user_id"
+  add_index "likes", ["post_id"], :name => "index_likes_on_post_id"
+  add_index "likes", ["user_id"], :name => "index_likes_on_user_id"
+
+  create_table "notes", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "posts", :force => true do |t|
+    t.string   "type"
+    t.integer  "user_id"
+    t.integer  "course_id"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "posts", ["course_id"], :name => "index_posts_on_course_id"
+  add_index "posts", ["user_id"], :name => "index_posts_on_user_id"
 
   create_table "roles", :force => true do |t|
     t.string   "name"
