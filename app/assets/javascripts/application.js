@@ -30,4 +30,5 @@ $(".logout_popup").click(function(e){
 $("body").click(function(e){
     $(".logout_popup .logout_popup_content").css("visibility","hidden");
 });
+
 });

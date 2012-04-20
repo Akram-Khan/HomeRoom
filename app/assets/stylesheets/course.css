@@ -247,3 +247,7 @@ textarea#styled-no-width {
 .show-comments{
   font-weight: bold;
 }
+
+.delete-comment-link{
+  display: none;
+}

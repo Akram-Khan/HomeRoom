@@ -10,8 +10,18 @@ class CommentsController < ApplicationController
 
 
 	def destroy
-		comment = Comment.find(params[:id])
-	    comment.destroy
-	    redirect_to :back or root_path
+		@course = Course.find(params[:course_id])
+		@user = current_user
+		@comment = Comment.find(params[:id])
+		if @user.id == @comment.user.id || @user.id == @course.teachers.first.id
+	      @comment.destroy
+	    else
+	      redirect_to @course
+	    end
+	    respond_to do |format|
+	    	format.html { redirect_to @course }
+      		format.js   {render :nothing => true}
+    	end
 	end
+
 end

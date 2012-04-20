@@ -34,70 +34,76 @@
 					%li=link_to course.number, course_path(course)
 				%hr
 
-
 .section
 	.row
 		.eight.columns.stream-data
 			-@posts.each do |post|
 				-if post.type == "Note"
 					.section
-						.row
-							.two.columns
-								=link_to (image_tag "no-image.jpg"), user_path(post.user)
-							.post-custom-margin.custom-word-wrap
-								.ten.columns
-									.twelve.columns.username-color
-										%strong=link_to post.user.firstname + " " + post.user.lastname, user_path(post.user)
-									.row
-										.twelve.columns
-											=post.description
-									
-									.section
-										.row.note-comment-link
-											.three.columns.show-comments
-												%span=link_to "+", "#"
-												=link_to " Comments #{post.comments.count}", "#"	
-											.two.columns
-												-found = 0
-												-post.likes.each do |like|
-													-if like.user_id == current_user.id
-														-found = 1
-												-if found == 0
-													.like-form
-														=form_for [@course,post,post.likes.build], :html => {:class => "like_form"} do |f|
-															=f.hidden_field :post_id, :value => post.id
-														
-															=link_to_function "&#9650 #{post.likes.count}".html_safe, "$(this).parent().submit()"
-												-else
-													= "&#9650 #{post.likes.count}".html_safe
-											.one.columns
-									
-										.row.custom-comment.custom-word-wrap
-											.comment-top-margin
-												.twelve.columns.post-custom-margin
-													-if post.comments.exists?
-														.comments
-															-post.comments.each do |comment|
-																.row.cycle-comments{:class => cycle("dark", "light") }
-																	.two.columns
-																		=link_to (image_tag "no-image-small.jpg"), user_path(comment.user)
-																	.post-custom-margin
-																		.ten.columns
-																			%strong=link_to comment.user.firstname + " " + comment.user.lastname, user_path(comment.user)
-																			=comment.comment
-													
-													
-														.post-comment-form
-															=form_for [@course,post,post.comments.build] do |f|
+						.note
+							.row
+							
+								.two.columns.user-image
+									=link_to (image_tag "no-image.jpg"), user_path(post.user)
+								.post-custom-margin.custom-word-wrap
+									.ten.columns
+										.eleven.columns.username-color
+											%strong=link_to post.user.firstname + " " + post.user.lastname, user_path(post.user)
+										.one.columns
+											-if @user.id == post.user.id || @user.id == @course.teachers.first.id
+												%strong=link_to "X",[@course,post], :remote => true,:method => :delete, :class => "delete-note"
+											
+										.row
+											.twelve.columns.post-description
+												=post.description
+										
+										.section
+											.row.note-comment-link
+												.three.columns.show-comments
+													%span=link_to "+", "#"
+													=link_to " Comments #{post.comments.count}", "#"	
+												.two.columns
+													-found = 0
+													-post.likes.each do |like|
+														-if like.user_id == current_user.id
+															-found = 1
+													-if found == 0
+														.like-form
+															=form_for [@course,post,post.likes.build], :html => {:class => "like_form"} do |f|
 																=f.hidden_field :post_id, :value => post.id
-																=f.text_field :comment, :placeholder => "Write a Comment ...", :rows=> "5",:class=> "custom-textfield"
+															
+																=link_to_function "&#9650 #{post.likes.count}".html_safe, "$(this).parent().submit()"
 													-else
-														.post-first-comment-form
-															=form_for [@course,post,post.comments.build] do |f|
-																=f.hidden_field :post_id, :value => post.id
-																=f.text_field :comment, :placeholder => "Write a Comment ...", :rows=> "5",:class=> "custom-textfield"	
-					-reset_cycle											
-				%hr
+														= "&#9650 #{post.likes.count}".html_safe
+												.one.columns
+										
+											.row.custom-comment.custom-word-wrap
+												.comment-top-margin
+													.twelve.columns.post-custom-margin
+														-if post.comments.exists?
+															.comments
+																-post.comments.each do |comment|
+																	.row.cycle-comments{:class => cycle("dark", "light") }
+																		.two.columns
+																			=link_to (image_tag "no-image-small.jpg"), user_path(comment.user)
+																		.post-custom-margin
+																			.ten.columns
+																				%strong=link_to comment.user.firstname + " " + comment.user.lastname, user_path(comment.user)
+																				=comment.comment
+																		.delete-comment-link
+																			%strong=link_to "X", [@course,post,comment],:remote => true,:method => :delete, :class => "delete-comment"
+														
+															.post-comment-form
+																=form_for [@course,post,post.comments.build] do |f|
+																	=f.hidden_field :post_id, :value => post.id
+																	=f.text_field :comment, :placeholder => "Write a Comment ...", :rows=> "5",:class=> "custom-textfield"
+														-else
+															.post-first-comment-form
+																=form_for [@course,post,post.comments.build] do |f|
+																	=f.hidden_field :post_id, :value => post.id
+																	=f.text_field :comment, :placeholder => "Write a Comment ...", :rows=> "5",:class=> "custom-textfield"	
+							-reset_cycle											
+							%hr
 		.four.columns
 .section
 	.row

@@ -105,6 +105,7 @@ class CoursesController < ApplicationController
 		@courses = Course.all
 		@student = @course.students.build
 		@posts = Post.all
+		@user = current_user
 	end
 
 	def create
