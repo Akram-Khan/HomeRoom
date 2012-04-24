@@ -8,9 +8,8 @@ $('.show-comments').live("click",(function(event){
 
 })).live("click",(function(event){
                event.preventDefault();
-               var toggled = $(this).data('toggled');
-               $(this).data('toggled', !toggled);
-               if (!toggled) {
+        
+               if ($(this).children('span').children('a').html() == "+") {
                        $(this).children('span').children('a').html("&#8211").css('fontWeight', 'bold');
                }
                else {

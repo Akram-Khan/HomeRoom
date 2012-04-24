@@ -29,7 +29,12 @@ $(document).ready(function(){
 
       if(state) {
         $('.replaced_comments_stream').find('.custom-comment').hide();
+        $('.replaced_comments_stream').find('span').children('a').text("+").css('fontWeight', 'bold');
       }
+      if(!state) {
+        $('.replaced_comments_stream').find('span').children('a').html("&#8211").css('fontWeight', 'bold');
+      }
+
 
       //$(this).parents(".custom-comment").css("fontWeight", "bold");
 
