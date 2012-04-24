@@ -104,7 +104,7 @@ class CoursesController < ApplicationController
 		@course = Course.find(params[:id])
 		@courses = Course.all
 		@student = @course.students.build
-		@posts = Post.all
+		@posts = @course.posts.all
 		@user = current_user
 	end
 
@@ -238,6 +238,9 @@ private
 				redirect_to new_course_invite_teacher_path(course)
 			elsif @context == "invite_teacher"
 				flash[:notice] = "This course will not be active unless you Accept to be its teacher."
+				redirect_to dashboard_path
+			else
+				flash[:error] = "You must be an authorized user to view this page."
 				redirect_to dashboard_path
 			end
 		end
