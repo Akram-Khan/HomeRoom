@@ -1,0 +1,57 @@
+.comments_partial	
+	.section
+		.row.note-comment-link
+			.three.columns.show-comments
+				-teacher_comment = 0
+				-@course.teachers.each do |teacher|
+					-post.comments.each do |comment|
+						-if comment.user_id == teacher.id
+							-teacher_comment = 1
+
+				-if teacher_comment == 1			
+					%span=link_to "+", "#"
+					=link_to " Comments #{post.comments.count}", "#"
+					=image_tag "teacher-indicator-for-comments.png", :class => "teacher-indicator"
+				-else
+					%span=link_to "+", "#"
+					=link_to " Comments #{post.comments.count}", "#"	
+			.two.columns
+				-found = 0
+				-post.likes.each do |like|
+					-if like.user_id == current_user.id
+						-found = 1
+				-if found == 0
+					.like-form
+						=form_for [@course,post,post.likes.build], :remote => true, :html => {:multipart => true, :class => "like_form"} do |f|
+							=f.hidden_field :post_id, :value => post.id
+						
+							=link_to_function "&#9650 #{post.likes.count}".html_safe, "$(this).parent().submit()"
+				-else
+					= "&#9650 #{post.likes.count}".html_safe
+			.one.columns
+
+		.row.custom-comment.custom-word-wrap
+			.comment-top-margin
+				.twelve.columns.post-custom-margin
+					-if post.comments.exists?
+						.comments
+							-post.comments.each do |comment|
+								.row.cycle-comments{:class => cycle("dark", "light") }
+									.two.columns
+										=link_to (image_tag "no-image-small.jpg"), user_path(comment.user)
+									.post-custom-margin
+										.ten.columns
+											%strong=link_to comment.user.firstname + " " + comment.user.lastname, user_path(comment.user)
+											=comment.comment
+					
+					
+						.post-comment-form
+							=form_for [@course,post,post.comments.build], :remote => true, :validate => true, :html => {:multipart => true, :id => 'create_comment_form'} do |f|
+								=f.hidden_field :post_id, :value => post.id
+								=f.text_field :comment, :placeholder => "Write a Comment ...", :rows=> "5",:class=> "custom-textfield"
+					-else
+						.post-first-comment-form
+							=form_for [@course,post,post.comments.build], :remote => true, :validate => true, :html => {:multipart => true, :id => 'create_comment_form'} do |f|
+								=f.hidden_field :post_id, :value => post.id
+								=f.text_field :comment, :placeholder => "Write a Comment ...", :rows=> "5",:class=> "custom-textfield"
+	-reset_cycle

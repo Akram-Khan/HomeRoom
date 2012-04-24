@@ -91,9 +91,6 @@
 
 /*Giving a color to the username which is showed in a specific course page*/
 
-.username-color{
-  color: #01A9DB;
-}
 
 .leftpanel-courselist a{
   color: black; 
@@ -174,7 +171,6 @@ textarea#styled-no-width {
 
 .custom-comment{
   font-size: 90%;
-  display:none;
 }
 
 /*Top Margin to the comments*/
@@ -247,3 +243,24 @@ textarea#styled-no-width {
 .show-comments{
   font-weight: bold;
 }
+
+.load_more a{
+  display: block;
+  border-radius: 5px;
+  border: 1px solid #DDD;
+  background-color: #E6E6E6;
+  text-align: center;
+  font-weight: bold;
+  color: #585858;
+  text-decoration: none;
+  padding: 5px;
+  font-weight: bold;
+  font-size: 120%;
+}
+
+.teacher-indicator{
+  padding-left: 5px;
+}
+
+
+

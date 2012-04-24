@@ -1,0 +1,18 @@
+.section
+	.row
+		.two.columns
+			=link_to (image_tag "no-image.jpg"), user_path(post.user)
+		.post-custom-margin.custom-word-wrap
+			.ten.columns
+				-@course.teachers.each do |teacher|
+					-if post.user_id == teacher.id
+						%strong=link_to post.user.firstname + " " + post.user.lastname, user_path(post.user)
+						=image_tag "teacher-indicator.png", :class => "teacher-indicator"
+					-else
+						%strong=link_to post.user.firstname + " " + post.user.lastname, user_path(post.user)
+				.row
+					.twelve.columns
+						=post.description
+				=render :partial => "courses/post_comments", :locals => {:post => post}
+
+%hr											
