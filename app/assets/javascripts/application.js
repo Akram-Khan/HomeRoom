@@ -6,7 +6,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-
+//= require foundation
+//= require rails.validation
 //= require_tree .
 
 $(document).ready(function(){
@@ -58,3 +59,7 @@ $(function(){
       if (xhr.status == 404) $('a.next_page:last').remove();
     });    
 });
+
+
+});
+

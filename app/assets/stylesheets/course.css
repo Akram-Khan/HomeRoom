@@ -262,5 +262,7 @@ textarea#styled-no-width {
   padding-left: 5px;
 }
 
-
+.delete-comment-link{
+  display: none;
+}
 

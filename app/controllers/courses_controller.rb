@@ -104,8 +104,8 @@ class CoursesController < ApplicationController
 		@course = Course.find(params[:id])
 		@courses = Course.all
 		@student = @course.students.build
-		#@posts = Post.order("created_at DESC")
 		@posts = @course.posts.paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
+		@user = current_user
 	end
 
 	def create
