@@ -23,7 +23,7 @@ $(document).ready(function(){
       //$(".comments_partial").prepend("<%= escape_javascript(render :partial => 'public/comment', :object => @comment) %>");
       //$(".comments_partial").replaceWith("a yaddy yaddy"); 
 
-      $(this).parents(".comments_partial").prepend(xhr.responseText);
+      $(this).parents(".comments_partial").replaceWith(xhr.responseText);
       //$(this).parents(".custom-comment").css("fontWeight", "bold");
 
 

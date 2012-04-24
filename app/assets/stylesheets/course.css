@@ -266,3 +266,16 @@ textarea#styled-no-width {
   display: none;
 }
 
+.comment-time-in-same-line li{
+  display: inline;
+}
+
+.comment-time-in-same-line li:last-child {
+  padding-left: 5px;
+  padding-right: 3px;
+  float:right;
+}
+
+.post-time-aligned-right{
+  text-align: right;
+}

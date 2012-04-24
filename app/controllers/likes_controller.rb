@@ -2,7 +2,7 @@ class LikesController < ApplicationController
 	respond_to :html, :xml, :json
 	before_filter :authenticate_user!
 	before_filter :correct_user
-	before_filter :redirect_if_course_is_inactive
+	before_filter :restrict_if_course_is_inactive
 
 	def create
 		@course = Course.find(params[:course_id])

@@ -19,12 +19,12 @@ $('.show-comments').live("click",(function(event){
 
 }));
 
-	$(".delete-note").bind('ajax:success', function(evt, data, status, xhr){
+	$(".delete-note").live('ajax:success', function(evt, data, status, xhr){
 		$(this).parents(".note").fadeOut();
 	});
 
-	$('.cycle-comments').hover(function(){
+	$('.cycle-comments').live('hover', (function(){
 		$(this).children('.delete-comment-link').toggle();
-	});
+	}));
   
 });

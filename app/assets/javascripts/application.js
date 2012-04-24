@@ -7,30 +7,32 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
-//= require rails.validation
+//= require rails.validations
 //= require_tree .
 
 $(document).ready(function(){
 
-$(".login_popup").click(function(e){
-    $(".login_popup .login_popup_content").css("visibility","visible");
-   e.stopPropagation();
-});
+  $(".login_popup").click(function(e){
+      $(".login_popup .login_popup_content").css("visibility","visible");
+     e.stopPropagation();
+  });
 
-$("body").click(function(e){
-    $(".login_popup .login_popup_content").css("visibility","hidden");
-});
+  $("body").click(function(e){
+      $(".login_popup .login_popup_content").css("visibility","hidden");
+  });
 });
 
 $(document).ready(function(){
-$(".logout_popup").click(function(e){
-    $(".logout_popup .logout_popup_content").css("visibility","visible");
-   e.stopPropagation();
-});
 
-$("body").click(function(e){
-    $(".logout_popup .logout_popup_content").css("visibility","hidden");
-});
+  $(".logout_popup").click(function(e){
+      $(".logout_popup .logout_popup_content").css("visibility","visible");
+     e.stopPropagation();
+  });
+
+  $("body").click(function(e){
+      $(".logout_popup .logout_popup_content").css("visibility","hidden");
+  });
+
 });
 
 
@@ -60,6 +62,4 @@ $(function(){
     });    
 });
 
-
-});
 

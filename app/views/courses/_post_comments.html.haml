@@ -27,7 +27,8 @@
 							=link_to_function "&#9650 #{post.likes.count}".html_safe, "$(this).parent().submit()"
 				-else
 					= "&#9650 #{post.likes.count}".html_safe
-			.one.columns
+			.four.columns.post-time-aligned-right
+				%em="#{time_ago_in_words(post.created_at)} ago"
 		.row.custom-comment.custom-word-wrap
 			.comment-top-margin
 				.twelve.columns.post-custom-margin
@@ -39,16 +40,19 @@
 										=link_to (image_tag "no-image-small.jpg"), user_path(comment.user)
 									.post-custom-margin
 										.ten.columns
-											%strong=link_to comment.user.firstname + " " + comment.user.lastname, user_path(comment.user)
-											=comment.comment
+											%ul(class="comment-time-in-same-line")
+												%li
+													%strong=link_to comment.user.firstname + " " + comment.user.lastname, user_path(comment.user)
+													=comment.comment
+												%li
+													%em="#{time_ago_in_words(comment.created_at)} ago"
 									.delete-comment-link
-										-if @user.id == comment.user.id || @user.id == @course.teachers.first.id
+										-if current_user.id == comment.user.id || current_user.id == @course.teachers.first.id
 											%strong=link_to "X", [@course,post,comment],:remote => true,:method => :delete, :id => "delete-comment"										
 						.post-comment-form
 							=form_for [@course,post,post.comments.build], :remote => true, :validate => true, :html => {:multipart => true, :id => 'create_comment_form'} do |f|
-									.delete-comment-link
-										-if @user.id == comment.user.id || @user.id == @course.teachers.first.id
-											%strong=link_to "X", [@course,post,comment],:remote => true,:method => :delete, :id => "delete-comment"
+								=f.hidden_field :post_id, :value => post.id
+								=f.text_field :comment, :placeholder => "Write a Comment ...", :rows=> "5",:class=> "custom-textfield"
 					-else
 						.post-first-comment-form
 							=form_for [@course,post,post.comments.build], :remote => true, :validate => true, :html => {:multipart => true, :id => 'create_comment_form'} do |f|

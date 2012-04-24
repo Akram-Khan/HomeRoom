@@ -34,7 +34,7 @@ class CommentsController < ApplicationController
 			    respond_with do |format|
 			      	format.html do
 			      		if request.xhr?
-			      			render :partial => "courses/post_comments", :locals => {:post => @post}, :layout => false, :status => :destroyed
+			      			render :partial => "courses/post_comments", :locals => {:post => @post}, :layout => false, :status => :created
 			      		else
 			      			redirect_to @course
 			      		end

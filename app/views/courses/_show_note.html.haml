@@ -13,8 +13,8 @@
 							-else
 								%strong=link_to post.user.firstname + " " + post.user.lastname, user_path(post.user)
 					.one.columns
-						-if @user.id == post.user.id || @user.id == @course.teachers.first.id
-							%strong=link_to "X",[@course,post], :remote => true,:method => :delete, :class => "delete-note"	
+						-if current_user.id == post.user.id || current_user.id == @course.teachers.first.id
+							%strong=link_to "X",[@course,post], :remote => true, :method => :delete, :class => "delete-note"	
 					.row
 						.twelve.columns
 							=post.description
