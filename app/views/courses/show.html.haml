@@ -26,6 +26,13 @@
 						=render :template => "notes/new"
 			-else
 				=render "enroll_button_partial"
+			.stream-data
+				.posts
+					-@posts.each do |post|
+						-if post.type == "Note"
+							=render :partial => "show_note", :locals => {:post => post}
+			.load_more
+				=will_paginate(@posts, :page_links=>false,:previous_label=> " ",:next_label=>"LOAD MORE")
 		.two.columns
 			%ul
 				%li(class="list-courses")
@@ -39,20 +46,6 @@
 				%hr
 				%li
 					=link_to "+ NEW COURSE", new_course_path, :class => "small blue button"  
-
-.section
-	.row
-		.eight.columns.stream-data
-			.posts
-				-@posts.each do |post|
-					-if post.type == "Note"
-						=render :partial => "show_note", :locals => {:post => post}
-		.four.columns
-.section
-	.row
-		.eight.columns
-			.load_more
-				=will_paginate(@posts, :page_links=>false,:previous_label=> " ",:next_label=>"LOAD MORE")
 .section
 	.row
 .section
