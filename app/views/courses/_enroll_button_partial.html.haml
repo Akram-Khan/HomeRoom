@@ -1,0 +1,14 @@
+.section
+	.row
+.section
+	.row
+.section
+	.row
+.section
+	.row
+		.three.columns
+		.nine.columns
+			-if @context == "invite_student"
+				=link_to "ENROLL AS STUDENT".html_safe, join_as_student_path(:id => @course), :class => "large blue button"
+			-elsif @context == "invite_teacher"
+				=link_to "JOIN AS TEACHER".html_safe, join_as_teacher_path(:id => @course), :class => "large blue button"

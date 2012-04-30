@@ -405,3 +405,7 @@ div.logout_popup .logout_popup_content{
   float: right;
   display: inline;
 }
+
+.flash {
+  margin-top: 15px;
+}

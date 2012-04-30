@@ -20,7 +20,7 @@
 				-post.likes.each do |like|
 					-if like.user_id == current_user.id
 						-found = 1
-				-if found == 0
+				-if found == 0 && @context != "invite_teacher" && @context != "invite_student"
 					.like-form
 						=form_for [@course,post,post.likes.build], :remote => true, :html => {:multipart => true, :class => "like_form"} do |f|
 							=f.hidden_field :post_id, :value => post.id
@@ -48,15 +48,17 @@
 													%em="#{time_ago_in_words(comment.created_at)} ago"
 									.delete-comment-link
 										-if current_user.id == comment.user.id || current_user.id == @course.teachers.first.id
-											%strong=link_to "X", [@course,post,comment],:remote => true,:method => :delete, :id => "delete-comment"										
-						.post-comment-form
-							=form_for [@course,post,post.comments.build], :remote => true, :validate => true, :html => {:multipart => true, :id => 'create_comment_form'} do |f|
-								=f.hidden_field :post_id, :value => post.id
-								=f.text_field :comment, :placeholder => "Write a Comment ...", :rows=> "5",:class=> "custom-textfield"
+											%strong=link_to "X", [@course,post,comment],:remote => true,:method => :delete, :id => "delete-comment"	
+						-if @context != "invite_teacher" && @context != "invite_student"			
+							.post-comment-form
+								=form_for [@course,post,post.comments.build], :remote => true, :validate => true, :html => {:multipart => true, :id => 'create_comment_form'} do |f|
+									=f.hidden_field :post_id, :value => post.id
+									=f.text_field :comment, :placeholder => "Write a Comment ...", :rows=> "5",:class=> "custom-textfield"
 					-else
-						.post-first-comment-form
-							=form_for [@course,post,post.comments.build], :remote => true, :validate => true, :html => {:multipart => true, :id => 'create_comment_form'} do |f|
-								=f.hidden_field :post_id, :value => post.id
-								=f.text_field :comment, :placeholder => "Write a Comment ...", :rows=> "5",:class=> "custom-textfield"
+						-if @context != "invite_teacher" && @context != "invite_student"
+							.post-first-comment-form
+								=form_for [@course,post,post.comments.build], :remote => true, :validate => true, :html => {:multipart => true, :id => 'create_comment_form'} do |f|
+									=f.hidden_field :post_id, :value => post.id
+									=f.text_field :comment, :placeholder => "Write a Comment ...", :rows=> "5",:class=> "custom-textfield"
 	-reset_cycle									
 
