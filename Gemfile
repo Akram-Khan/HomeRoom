@@ -17,7 +17,9 @@ gem 'pg'
 gem 'formtastic'
 gem "omniauth-facebook"
 gem "will_paginate"
-
+gem "pismo"
+gem "truncate_html"
+gem "embedly"
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -31,6 +33,8 @@ gem 'jquery-rails'
 
 gem "make_resourceful"
 gem "client_side_validations"
+
+gem 'nokogiri'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

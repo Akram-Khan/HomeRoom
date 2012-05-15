@@ -1,0 +1,69 @@
+.section
+	.post
+		.row
+			.two.columns
+				=link_to (image_tag "no-image.jpg"), user_path(post.user)
+			.post-custom-margin.custom-word-wrap
+				.ten.columns
+					.eleven.columns
+						%strong=link_to post.user.firstname + " " + post.user.lastname, user_path(post.user)
+						-@course.teachers.each do |teacher|
+							-if post.user_id == teacher.id
+								=image_tag "teacher-indicator.png", :class => "teacher-indicator"
+					.one.columns
+						-if current_user.id == post.user.id || current_user.id == @course.teachers.first.id
+							%strong=link_to "X",[@course,post], :remote => true, :method => :delete, :class => "delete-post"	
+					.row
+						.twelve.columns
+							-if post.type == "Note"
+								=post.description
+							-if post.type == "Link"
+								-begin
+									-@embedly_api = Embedly::API.new :key => 'a668f09e9bfb11e1be1d4040aae4d8c9', :user_agent => 'Mozilla/5.0 (compatible; mytestapp/1.0; my@email.com)'
+									-obj = @embedly_api.oembed :url => post.url, :width => 450
+								-rescue
+								%strong=post.description
+								.section
+									.row
+										-if obj[0]
+											-if obj[0].thumbnail_url.present?
+												.three.columns
+													=image_tag obj[0].thumbnail_url
+												.nine.columns
+													-if obj[0].title.present?
+														=link_to "#{obj[0].title}", post.url, :target => "_blank"
+													-else
+														=link_to "#{post.url}", post.url, :target => "_blank"
+													-if obj[0].description.present?
+														.share-link
+															=truncate_html(obj[0].description, :length => 250)
+											-else
+												-if obj[0].title.present?
+													=link_to "#{obj[0].title}", post.url, :target => "_blank"
+												-else
+													=link_to "#{post.url}", post.url, :target => "_blank"
+												-if obj[0].description.present?
+													.share-stuff-description
+														=truncate_html(obj[0].description, :length => 250)
+										-else
+											=link_to "#{post.url}", post.url, :target => "_blank"
+							-if post.type == "Video"
+								-begin
+									-@embedly_api = Embedly::API.new :key => 'a668f09e9bfb11e1be1d4040aae4d8c9', :user_agent => 'Mozilla/5.0 (compatible; mytestapp/1.0; my@email.com)'
+									-obj = @embedly_api.oembed :url => post.url, :width => 450
+								-rescue
+								%strong=post.description
+								.section
+									.row
+										-if obj
+											.twelve.columns
+												-if obj[0].html.present?
+													=raw obj[0].html.as_json
+												-if obj[0].description.present?
+													.share-stuff-description
+														=obj[0].description
+												=link_to "#{post.url}", post.url, :target => "_blank"
+										-else
+											=link_to "#{post.url}", post.url, :target => "_blank"
+					=render :partial => "courses/post_comments", :locals => {:post => post}
+		%hr											

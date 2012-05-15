@@ -10,6 +10,10 @@ class NotesController < ApplicationController
   def new
   	@course = Course.find(params[:course_id])
   	@note = Note.new
+
+    respond_to do | format |  
+        format.js {render :layout => false}  
+    end
   end
 
   def create
@@ -20,7 +24,7 @@ class NotesController < ApplicationController
       respond_with do |format|
         format.html do
           if request.xhr?
-            render :partial => "courses/show_note", :locals => { :post => @note }, :layout => false, :status => :created
+            render :partial => "courses/show_post", :locals => { :post => @note }, :layout => false, :status => :created
           else
             redirect_to course_path(@course)
           end

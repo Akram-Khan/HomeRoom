@@ -25,6 +25,14 @@ Homeroom::Application.routes.draw do
       resources :comments
       resources :likes
     end
+    resources :links do
+      resources :comments
+      resources :likes
+    end
+    resources :videos do
+      resources :comments
+      resources :likes
+    end
   end
 
   resources :users

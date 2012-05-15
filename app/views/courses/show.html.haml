@@ -9,28 +9,27 @@
 				.share-items
 					%ul
 						%li
-							POST:
-						%li(class="active note")
-							=link_to "NOTE", "#"
-						%li
-							=link_to "LINK", "#"
-						%li
-							=link_to "MEDIA", "#"
-						%li
+							%strong
+								POST:
+						%li(class = "active note")
+							=link_to "NOTE", new_course_note_path(@course), :remote => true
+						%li(class = "link")
+							=link_to "LINK", new_course_link_path(@course), :remote => true
+						%li(class = "media")
+							=link_to "MEDIA", new_course_video_path(@course), :remote => true
+						%li(class = "file")
 							=link_to "FILE", "#"
-						%li
+						%li(class = "question")
 							=link_to "QUESTION", "#"
-						%li
-							=link_to "BLOG", "#"
-					.note-form
-						=render :template => "notes/new"
+					#new-post
+						=render "notes/new_note"
+
 			-else
 				=render "enroll_button_partial"
 			.stream-data
 				.posts
 					-@posts.each do |post|
-						-if post.type == "Note"
-							=render :partial => "show_note", :locals => {:post => post}
+						=render :partial => "show_post", :locals => {:post => post}
 			.load_more
 				=will_paginate(@posts, :page_links=>false,:previous_label=> " ",:next_label=>"LOAD MORE")
 		.two.columns

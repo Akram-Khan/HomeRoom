@@ -1,6 +1,6 @@
 class Post < ActiveRecord::Base
 
-	attr_accessible :description, :course_id, :user_id
+	attr_accessible :url, :description, :course_id, :user_id
 
 	belongs_to :course
 	belongs_to :user 

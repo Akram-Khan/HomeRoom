@@ -1,4 +1,9 @@
 class CoursesController < ApplicationController
+	require 'embedly'
+	require 'json'
+
+	respond_to :html, :xml, :json
+	
 	before_filter :authenticate_user!
 	before_filter :correct_user, :only => [:show, :teachers, :students, :join_as_student, :join_as_teacher]
 	before_filter :restrict_if_course_is_inactive, :only => [:show]
@@ -6,7 +11,6 @@ class CoursesController < ApplicationController
 	make_resourceful do
 		actions :all
 	end
-
 	def students
 		@title = "Students"
 		@course = Course.find(params[:id])
@@ -106,6 +110,8 @@ class CoursesController < ApplicationController
 		@student = @course.students.build
 		@posts = @course.posts.paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
 		@user = current_user
+
+		
 	end
 
 	def create

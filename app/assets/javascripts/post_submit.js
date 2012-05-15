@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-  $('#create_note_form')
+  $('#create_post_form')
     .live("ajax:beforeSend", function(evt, xhr, settings){
       var $submitButton = $(this).find('input[name="commit"]');
 

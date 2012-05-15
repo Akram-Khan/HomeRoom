@@ -18,12 +18,53 @@ $('.show-comments').live("click",(function(event){
 
 }));
 
-	$(".delete-note").live('ajax:success', function(evt, data, status, xhr){
-		$(this).parents(".note").fadeOut();
+	$(".delete-post").live('ajax:success', function(evt, data, status, xhr){
+		$(this).parents(".post").fadeOut();
 	});
 
 	$('.cycle-comments').live('hover', (function(){
 		$(this).children('.delete-comment-link').toggle();
-	}));
-  
+	})); 
+
+  $('.note').click(function(){
+    $('.link').removeClass('active');
+    $('.media').removeClass('active');
+    $('.file').removeClass('active');
+    $('.question').removeClass('active');
+    $('.note').addClass('active');
+  });
+
+  $('.link').click(function(){
+    $('.note').removeClass('active');
+    $('.media').removeClass('active');
+    $('.file').removeClass('active');
+    $('.question').removeClass('active');
+    $('.link').addClass('active');
+  });
+
+  $('.media').click(function(){
+    $('.note').removeClass('active');
+    $('.link').removeClass('active');
+    $('.file').removeClass('active');
+    $('.question').removeClass('active');
+    $('.media').addClass('active');
+  });
+
+  $('.file').click(function(){
+    $('.note').removeClass('active');
+    $('.link').removeClass('active');
+    $('.media').removeClass('active');
+    $('.question').removeClass('active');
+    $('.file').addClass('active');
+  });
+
+  $('.question').click(function(){
+    $('.note').removeClass('active');
+    $('.link').removeClass('active');
+    $('.media').removeClass('active');
+    $('.file').removeClass('active');
+    $('.question').addClass('active');
+  });
+
+
 });
