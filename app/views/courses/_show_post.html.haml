@@ -59,6 +59,8 @@
 											.twelve.columns
 												-if obj[0].html.present?
 													=raw obj[0].html.as_json
+												-elsif obj[0].thumbnail_url.present?
+													=image_tag obj[0].thumbnail_url
 												-if obj[0].description.present?
 													.share-stuff-description
 														=obj[0].description
