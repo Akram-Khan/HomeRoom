@@ -35,17 +35,10 @@
   color: #01A9DB;
 }
 
-.share-items ul li{
-  float: left;
-  display: inline;
-  padding-left: 30px;
+.share-items-list{
+  padding-left: 10px;
   padding-top: 10px;
 }
-
-.share-items li:first-child{
-  padding-left: 10px;
-}
-
 .post-form{
   padding: 10px;
   padding-bottom: 0px;

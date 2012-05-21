@@ -7,20 +7,22 @@
 		.eight.columns
 			-if @context == "teacher" || @context == "student"
 				.share-items
-					%ul
-						%li
-							%strong
-								POST:
-						%li(class = "active note")
-							=link_to "NOTE", new_course_note_path(@course), :remote => true
-						%li(class = "link")
-							=link_to "LINK", new_course_link_path(@course), :remote => true
-						%li(class = "media")
-							=link_to "MEDIA", new_course_video_path(@course), :remote => true
-						%li(class = "file")
-							=link_to "FILE", "#"
-						%li(class = "question")
-							=link_to "QUESTION", "#"
+					.row
+						.share-items-list
+							.one.columns
+								%strong
+									POST:
+							.one.columns.active.note
+								=link_to "NOTE", new_course_note_path(@course), :remote => true
+							.one.columns.link
+								=link_to "LINK", new_course_link_path(@course), :remote => true
+							.one.columns.media
+								=link_to "MEDIA", new_course_video_path(@course), :remote => true
+							.one.columns.file
+								=link_to "FILE", "#"
+							.one.columns.question
+								=link_to "QUESTION", "#"
+							.one.columns
 					#new-post
 						=render "notes/new_note"
 
