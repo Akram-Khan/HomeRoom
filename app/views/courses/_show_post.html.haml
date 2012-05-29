@@ -25,7 +25,7 @@
 								%strong=post.description
 								.section
 									.row
-										-if obj[0]
+										-if obj
 											-if obj[0].thumbnail_url.present?
 												.three.columns
 													=image_tag obj[0].thumbnail_url
@@ -67,5 +67,13 @@
 												=link_to "#{post.url}", post.url, :target => "_blank"
 										-else
 											=link_to "#{post.url}", post.url, :target => "_blank"
+							-if post.type == "Attachment"
+								%strong=post.description
+								.section
+									.row
+										.twelve.columns
+											-basename=File.basename("#{post.attached}")
+											=image_tag "paperclip_icon.png"
+											=link_to "#{basename}", "#{post.attached}", :target => "_blank"
 					=render :partial => "courses/post_comments", :locals => {:post => post}
 		%hr											

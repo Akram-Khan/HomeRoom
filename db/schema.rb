@@ -11,7 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120512095846) do
+ActiveRecord::Schema.define(:version => 20120522081151) do
+
+  create_table "attachments", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "comments", :force => true do |t|
     t.text     "comment"
@@ -89,6 +94,7 @@ ActiveRecord::Schema.define(:version => 20120512095846) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "url"
+    t.string   "attached"
   end
 
   add_index "posts", ["course_id"], :name => "index_posts_on_course_id"

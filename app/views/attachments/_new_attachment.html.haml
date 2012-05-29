@@ -1,0 +1,8 @@
+.row
+	.post-form
+		=form_for(@attachment = Attachment.new, :url => course_attachments_path(@course), :remote => true, :validate => true, :html => {:multipart => true, :id => 'create_post_form'}) do |f|
+			=f.file_field :attached
+			=f.text_area :description, :placeholder => "Description", :rows => "5", :id => "styled"
+			=f.hidden_field :user_id, :value => current_user.id
+			=f.hidden_field :course_id, :value => @course.id
+			=f.submit :class => "small black button", :value => "POST"

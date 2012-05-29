@@ -33,6 +33,10 @@ Homeroom::Application.routes.draw do
       resources :comments
       resources :likes
     end
+    resources :attachments do
+      resources :comments
+      resources :likes
+    end
   end
 
   resources :users

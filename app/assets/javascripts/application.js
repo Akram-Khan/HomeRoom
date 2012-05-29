@@ -33,6 +33,8 @@ $(document).ready(function(){
       $(".logout_popup .logout_popup_content").css("visibility","hidden");
   });
 
+
+
 });
 
 
@@ -61,5 +63,7 @@ $(function(){
       if (xhr.status == 404) $('a.next_page:last').remove();
     });    
 });
+
+
 
 

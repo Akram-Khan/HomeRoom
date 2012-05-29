@@ -19,12 +19,12 @@
 							.one.columns.media
 								=link_to "MEDIA", new_course_video_path(@course), :remote => true
 							.one.columns.file
-								=link_to "FILE", "#"
+								=link_to "FILE", new_course_attachment_path(@course), :remote => true
 							.one.columns.question
 								=link_to "QUESTION", "#"
 							.one.columns
 					#new-post
-						=render "notes/new_note"
+						=render "attachments/new_attachment"
 
 			-else
 				=render "enroll_button_partial"

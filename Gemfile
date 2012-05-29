@@ -20,6 +20,7 @@ gem "will_paginate"
 gem "pismo"
 gem "truncate_html"
 gem "embedly"
+gem "carrierwave"
 
 # Gems used only for assets and not required
 # in production environments by default.

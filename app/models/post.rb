@@ -1,6 +1,14 @@
+require 'file_size_validator' 
 class Post < ActiveRecord::Base
 
-	attr_accessible :url, :description, :course_id, :user_id
+	mount_uploader :attached, AttachedUploader
+
+  	validates :attached,  :allow_blank => true, 
+                      	  :file_size => { 
+                          :maximum => 10.megabytes.to_i , :message => "not allowed"
+                      } 
+
+	attr_accessible :attached, :url, :description, :course_id, :user_id
 
 	belongs_to :course
 	belongs_to :user 
