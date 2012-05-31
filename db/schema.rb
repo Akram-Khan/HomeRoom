@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120530072034) do
+ActiveRecord::Schema.define(:version => 20120531102454) do
 
   create_table "answers", :force => true do |t|
     t.text     "description"
@@ -79,6 +79,16 @@ ActiveRecord::Schema.define(:version => 20120530072034) do
 
   add_index "invite_teachers", ["course_id"], :name => "index_invite_teachers_on_course_id"
   add_index "invite_teachers", ["email"], :name => "index_invite_teachers_on_email"
+
+  create_table "like_answers", :force => true do |t|
+    t.integer  "answer_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "like_answers", ["answer_id"], :name => "index_like_answers_on_answer_id"
+  add_index "like_answers", ["user_id"], :name => "index_like_answers_on_user_id"
 
   create_table "likes", :force => true do |t|
     t.integer  "post_id"

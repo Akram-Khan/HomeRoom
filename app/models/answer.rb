@@ -8,4 +8,6 @@ class Answer < ActiveRecord::Base
 	validates :course_id, :presence => true
 	validates :user_id, :presence => true
 	validates :post_id, :presence => true
+
+  	has_many :like_answers, :dependent => :destroy
 end

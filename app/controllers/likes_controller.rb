@@ -11,9 +11,21 @@ class LikesController < ApplicationController
 
     if @post.likes.exists?
       @post.likes.each do |like|
-        if like.user_id = @user.id
+        if like.user_id == @user.id
           redirect_to :back
           return
+        end
+      end
+      @like = @post.likes.new(:post_id => @post.id, :user_id =>current_user.id)
+      if @like.save
+        respond_with do |format|
+          format.html do
+            if request.xhr?
+              render :partial => "courses/post_comments", :locals => { :post => @post }, :layout => false, :status => :created
+            else
+              redirect_to @course
+            end
+          end
         end
       end
     else

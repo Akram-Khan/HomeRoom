@@ -43,6 +43,9 @@ Homeroom::Application.routes.draw do
       resources :comments
       resources :likes
     end
+    resources :answers do
+      resources :like_answers
+    end
   end
 
   resources :users
