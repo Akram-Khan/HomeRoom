@@ -1,9 +1,0 @@
-server {
-  	listen 80;
-  	server_name local;
-  	root /Users/Abhijeet/Documents/ROR/old-depot/public;   # <--- be sure to point to 'public'!
-  	passenger_enabled on;
-	rails_env development;
-	
-}
-
