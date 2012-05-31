@@ -1,0 +1,29 @@
+.answers_partial
+	-if post.answers.count > 0
+		%hr
+		.row
+			.five.columns
+				%em
+					%strong
+						.answers-count
+							="#{pluralize(post.answers.count,'Answer')} :"
+	-post.answers.each do |answer|
+		.answer
+			.ten.columns
+				.two.columns
+					=link_to (image_tag "no-image.jpg"), user_path(answer.user)
+				.ten.columns
+					%strong=link_to post.user.firstname + " " + post.user.lastname, user_path(post.user)
+					-@course.teachers.each do |teacher|
+						-if post.user_id == teacher.id
+							=image_tag "teacher-indicator.png", :class => "teacher-indicator"
+					.row
+						=image_tag "answer_icon.png"
+						=answer.description
+			.one.columns
+				-if current_user.id == post.user.id || current_user.id == @course.teachers.first.id
+					%strong=link_to "X",[@course, post, answer], :remote => true, :method => :delete, :class => "delete-answer"
+			%hr
+	-if post.answers.count == 0
+		%hr
+	=render :partial => "answers/new_answer", :locals => { :course => @course, :post => post }

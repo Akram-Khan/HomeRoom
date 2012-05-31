@@ -18,5 +18,6 @@ class Course < ActiveRecord::Base
     has_many :invite_students, :dependent => :destroy
     has_many :posts, :dependent => :destroy
     has_many :comments, :dependent => :destroy
+    has_many :answers, :dependent => :destroy
 
 end

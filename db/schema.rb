@@ -11,7 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120522081151) do
+ActiveRecord::Schema.define(:version => 20120530072034) do
+
+  create_table "answers", :force => true do |t|
+    t.text     "description"
+    t.integer  "user_id"
+    t.integer  "course_id"
+    t.integer  "post_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "answers", ["course_id"], :name => "index_answers_on_course_id"
+  add_index "answers", ["post_id"], :name => "index_answers_on_post_id"
+  add_index "answers", ["user_id"], :name => "index_answers_on_user_id"
 
   create_table "attachments", :force => true do |t|
     t.datetime "created_at"
@@ -99,6 +112,11 @@ ActiveRecord::Schema.define(:version => 20120522081151) do
 
   add_index "posts", ["course_id"], :name => "index_posts_on_course_id"
   add_index "posts", ["user_id"], :name => "index_posts_on_user_id"
+
+  create_table "questions", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "roles", :force => true do |t|
     t.string   "name"

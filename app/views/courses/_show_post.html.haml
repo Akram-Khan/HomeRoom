@@ -10,14 +10,17 @@
 						-@course.teachers.each do |teacher|
 							-if post.user_id == teacher.id
 								=image_tag "teacher-indicator.png", :class => "teacher-indicator"
+
 					.one.columns
 						-if current_user.id == post.user.id || current_user.id == @course.teachers.first.id
 							%strong=link_to "X",[@course,post], :remote => true, :method => :delete, :class => "delete-post"	
 					.row
 						.twelve.columns
 							-if post.type == "Note"
+								=image_tag "note_icon.png"
 								=post.description
 							-if post.type == "Link"
+								=image_tag "link_icon.png"
 								-begin
 									-@embedly_api = Embedly::API.new :key => 'a668f09e9bfb11e1be1d4040aae4d8c9', :user_agent => 'Mozilla/5.0 (compatible; mytestapp/1.0; my@email.com)'
 									-obj = @embedly_api.oembed :url => post.url, :width => 450
@@ -48,6 +51,7 @@
 										-else
 											=link_to "#{post.url}", post.url, :target => "_blank"
 							-if post.type == "Video"
+								=image_tag "media_icon.png"
 								-begin
 									-@embedly_api = Embedly::API.new :key => 'a668f09e9bfb11e1be1d4040aae4d8c9', :user_agent => 'Mozilla/5.0 (compatible; mytestapp/1.0; my@email.com)'
 									-obj = @embedly_api.oembed :url => post.url, :width => 450
@@ -68,12 +72,17 @@
 										-else
 											=link_to "#{post.url}", post.url, :target => "_blank"
 							-if post.type == "Attachment"
+								=image_tag "file_icon.png"
 								%strong=post.description
 								.section
 									.row
 										.twelve.columns
 											-basename=File.basename("#{post.attached}")
-											=image_tag "paperclip_icon.png"
 											=link_to "#{basename}", "#{post.attached}", :target => "_blank"
+							-if post.type == "Question"
+								=image_tag "question_icon.png"
+								=post.description
 					=render :partial => "courses/post_comments", :locals => {:post => post}
+					-if post.type == "Question"
+						=render :partial => "courses/answers", :locals => {:post => post, :course => @course}
 		%hr											

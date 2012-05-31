@@ -80,6 +80,16 @@ textarea#styled {
   background-repeat: no-repeat;
 }
 
+textarea#styled-answer {
+  width: 600px;
+  border: 1px solid #cccccc;
+  padding: 5px;
+  font-family: Tahoma, sans-serif;
+  background-image: url(bg.gif);
+  background-position: bottom right;
+  background-repeat: no-repeat;
+}
+
 /*Custom text area without default width and height*/
 
 textarea#styled-no-width {
@@ -250,5 +260,12 @@ textarea#styled-no-width {
 
 .share-stuff-description {
   font-size: 90%;
+}
+
+.answers-count {
+    font-size : 120%;
+    padding-bottom: 5px;
+    border-bottom :1px solid #E6E6E6;
+    margin-bottom :10px;
 }
 

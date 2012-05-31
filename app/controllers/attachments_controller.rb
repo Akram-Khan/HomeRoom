@@ -30,6 +30,8 @@ class AttachmentsController < ApplicationController
           end
         end
       end
+    else
+      redirect_to course_path(@course)
     end
   end
 

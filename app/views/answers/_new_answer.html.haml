@@ -1,0 +1,8 @@
+.row
+	.answer-form
+		=form_for(@answer = Answer.new, :url => course_question_answers_path(course, post), :remote => true, :validate => true, :html => {:multipart => true, :id => 'create_answer_form'}) do |f|
+			=f.text_area :description, :placeholder => "Answer This Question", :rows => "3", :id => "styled-answer"
+			=f.hidden_field :user_id, :value => current_user.id
+			=f.hidden_field :course_id, :value => course.id
+			=f.hidden_field :post_id, :value => post.id
+			=f.submit :class => "small white button", :value => "ANSWER"

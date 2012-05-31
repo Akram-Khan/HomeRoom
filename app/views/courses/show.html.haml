@@ -9,23 +9,24 @@
 				.share-items
 					.row
 						.share-items-list
-							.one.columns
-								%strong
-									POST:
-							.one.columns.active.note
+							.two.columns.active.note
+								=link_to image_tag("note_icon.png"), new_course_note_path(@course), :remote => true
 								=link_to "NOTE", new_course_note_path(@course), :remote => true
-							.one.columns.link
+							.two.columns.link
+								=link_to image_tag("link_icon.png"), new_course_link_path(@course), :remote => true
 								=link_to "LINK", new_course_link_path(@course), :remote => true
-							.one.columns.media
+							.two.columns.media
+								=link_to image_tag("media_icon.png"), new_course_video_path(@course), :remote => true
 								=link_to "MEDIA", new_course_video_path(@course), :remote => true
-							.one.columns.file
+							.two.columns.file
+								=link_to image_tag("file_icon.png"), new_course_attachment_path(@course), :remote => true
 								=link_to "FILE", new_course_attachment_path(@course), :remote => true
-							.one.columns.question
-								=link_to "QUESTION", "#"
+							.three.columns.question
+								=link_to image_tag("question_icon.png"), new_course_question_path(@course), :remote => true
+								=link_to "QUESTION", new_course_question_path(@course), :remote => true
 							.one.columns
 					#new-post
-						=render "attachments/new_attachment"
-
+						=render "notes/new_note"
 			-else
 				=render "enroll_button_partial"
 			.stream-data
