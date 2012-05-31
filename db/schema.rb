@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(:version => 20120530072034) do
 
   create_table "answers", :force => true do |t|
     t.text     "description"
+    t.boolean  "correct",     :default => false
     t.integer  "user_id"
     t.integer  "course_id"
     t.integer  "post_id"

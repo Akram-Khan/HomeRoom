@@ -22,10 +22,6 @@ $('.show-comments').live("click",(function(event){
 		$(this).parents(".post").fadeOut();
 	});
 
-  $(".delete-answer").live('ajax:success', function(evt, data, status, xhr){
-    $(this).parents(".answer").fadeOut();
-  });
-
 	$('.cycle-comments').live('hover', (function(){
 		$(this).children('.delete-comment-link').toggle();
 	})); 

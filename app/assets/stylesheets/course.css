@@ -265,7 +265,9 @@ textarea#styled-no-width {
 .answers-count {
     font-size : 120%;
     padding-bottom: 5px;
-    border-bottom :1px solid #E6E6E6;
     margin-bottom :10px;
 }
 
+.mark-as-correct a{
+  color: #424242;
+}

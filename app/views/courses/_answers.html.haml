@@ -1,23 +1,30 @@
 .answers_partial
 	-if post.answers.count > 0
 		%hr
-		.row
-			.five.columns
-				%em
-					%strong
-						.answers-count
-							="#{pluralize(post.answers.count,'Answer')} :"
+		%em
+			%strong
+				.answers-count
+					="#{pluralize(post.answers.count,'Answer')} :"
 	-post.answers.each do |answer|
 		.answer
 			.ten.columns
-				.two.columns
-					=link_to (image_tag "no-image.jpg"), user_path(answer.user)
-				.ten.columns
-					%strong=link_to post.user.firstname + " " + post.user.lastname, user_path(post.user)
-					-@course.teachers.each do |teacher|
-						-if post.user_id == teacher.id
-							=image_tag "teacher-indicator.png", :class => "teacher-indicator"
-					.row
+				.row
+					.two.columns
+						=link_to (image_tag "no-image.jpg"), user_path(answer.user)
+					.six.columns
+						%strong=link_to post.user.firstname + " " + post.user.lastname, user_path(post.user)
+						-@course.teachers.each do |teacher|
+							-if post.user_id == teacher.id
+								=image_tag "teacher-indicator.png", :class => "teacher-indicator"
+					.four.columns
+						-if (current_user.id == post.user.id || current_user.id == @course.teachers.first.id) && answer.correct == FALSE
+							.white.radius.label.mark-as-correct
+								=link_to "Mark as Correct", answers_mark_as_correct_path(:course_id => @course.id, :answer_id => answer.id), :remote => true, :class => "delete-answer"
+						-if answer.correct == TRUE
+							.green.radius.label
+								Marked as Correct
+					.two.columns
+					.ten.columns
 						=image_tag "answer_icon.png"
 						=answer.description
 			.one.columns

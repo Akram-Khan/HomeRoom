@@ -43,17 +43,59 @@ class AnswersController < ApplicationController
   def destroy
     @course = Course.find(params[:course_id])
     @answer = Answer.find(params[:id])
+    @post = Post.find(@answer.post_id)
+
     @user = current_user
     if @user.id == @answer.user.id || @user.id == @course.teachers.first.id
-      @answer.destroy
+      if @answer.destroy
+        respond_with do |format|
+            format.html do
+              if request.xhr?
+                render :partial => "courses/answers", :locals => {:post => @post}, :layout => false, :status => :created
+              else
+                redirect_to @course
+              end
+            end
+        end
+      else
+        redirect_to @course
+      end
     else
       redirect_to @course
     end
-    respond_to do |format|
-      format.html { redirect_to @course }
-      format.js   {render :nothing => true}
+  end
+
+  def mark_as_correct
+    @course = Course.find(params[:course_id])
+    @answer = Answer.find(params[:answer_id])
+    @post = Post.find(@answer.post_id)
+    @user = current_user
+    
+    if @user.id == @answer.user.id || @user.id == @course.teachers.first.id
+      @answer.correct = TRUE
+      if @answer.save
+        respond_with do |format|
+            format.html do
+              if request.xhr?
+                logger.debug "-------> HERE"
+                render :partial => "courses/answers", :locals => {:post => @post}, :layout => false, :status => :created
+              else
+                logger.debug "------> NOT POSSIBLE"
+                redirect_to @course
+              end
+            end
+        end
+      else
+        logger.debug "absolutely impossible"
+        redirect_to @course
+      end
+    else
+        logger.debug "unauthorized"
+      flash[:error] = "You are not authorized to perform this action"
+      redirect_to @course
     end
   end
+
 
 private
 
