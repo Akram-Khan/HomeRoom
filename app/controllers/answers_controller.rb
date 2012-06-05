@@ -71,7 +71,7 @@ class AnswersController < ApplicationController
     @post = Post.find(@answer.post_id)
     @user = current_user
     
-    if @user.id == @answer.user.id || @user.id == @course.teachers.first.id
+    if @user.id == @answer.post.user.id || @user.id == @course.teachers.first.id
       @answer.correct = TRUE
       if @answer.save
         respond_with do |format|
@@ -86,11 +86,9 @@ class AnswersController < ApplicationController
             end
         end
       else
-        logger.debug "absolutely impossible"
         redirect_to @course
       end
     else
-        logger.debug "unauthorized"
       flash[:error] = "You are not authorized to perform this action"
       redirect_to @course
     end
