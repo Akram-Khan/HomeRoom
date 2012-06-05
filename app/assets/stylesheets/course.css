@@ -1,43 +1,5 @@
 /*Providing arrow to the post items (notes, links etc ...)*/
 
-.speech
-{
-  position: relative;
-  min-height: 100px;
-  background-color: #F2F2F2;
-  border: 2px solid #E6E6E6;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
-  -webkit-box-shadow: 2px 2px 4px #888;
-  -moz-box-shadow: 2px 2px 4px #888;
-  box-shadow: 2px 2px 4px #888;
-  padding: 10px;
-}
-
-.speech:before
-{
-  content: ' ';
-  position: absolute;
-  width: 0;
-  height: 0;
-  left: 60px;
-  top: -48px;
-  border: 23px solid;
-  border-color: transparent transparent #E6E6E6 transparent;
-}
-
-.speech:after
-{
-  content: ' ';
-  position: absolute;
-  width: 0;
-  height: 0;
-  left: 64px;
-  top: -36px;
-  border: 18px solid;
-  border-color: transparent transparent #F2F2F2 transparent;
-}
 
 
 /*Course header style*/
@@ -61,9 +23,8 @@
 }
 
 .share-items{
-  border-top: 2px solid #E6E6E6;
-  border-bottom: 2px solid #E6E6E6;
   background-color: #F2F2F2;
+  border-top: 1px solid white;
 }
 
 .share-items a{
@@ -74,14 +35,13 @@
   color: #01A9DB;
 }
 
-.share-items ul li{
-  float: left;
-  display: inline;
-  padding-left: 30px;
+.share-items-list{
+  padding-left: 10px;
+  padding-top: 10px;
 }
-
-.share-items li:first-child{
-  padding-left: 5px;
+.post-form{
+  padding: 10px;
+  padding-bottom: 0px;
 }
 
 
@@ -91,9 +51,6 @@
 
 /*Giving a color to the username which is showed in a specific course page*/
 
-.username-color{
-  color: #01A9DB;
-}
 
 .leftpanel-courselist a{
   color: black; 
@@ -123,6 +80,16 @@ textarea#styled {
   background-repeat: no-repeat;
 }
 
+textarea#styled-answer {
+  width: 600px;
+  border: 1px solid #cccccc;
+  padding: 5px;
+  font-family: Tahoma, sans-serif;
+  background-image: url(bg.gif);
+  background-position: bottom right;
+  background-repeat: no-repeat;
+}
+
 /*Custom text area without default width and height*/
 
 textarea#styled-no-width {
@@ -140,6 +107,13 @@ textarea#styled-no-width {
   height: 28px;
   width: 505px;
   border: 1px solid #BDBDBD;
+}
+
+.url-textfield{
+  height: 25px;
+  width: 597px;
+  border: 1px solid #BDBDBD;
+  margin-bottom: 10px;
 }
 
 /*Custom text field without default width and height*/
@@ -174,7 +148,6 @@ textarea#styled-no-width {
 
 .custom-comment{
   font-size: 90%;
-  display:none;
 }
 
 /*Top Margin to the comments*/
@@ -248,6 +221,53 @@ textarea#styled-no-width {
   font-weight: bold;
 }
 
+.load_more a{
+  display: block;
+  border-radius: 5px;
+  border: 1px solid #DDD;
+  background-color: #E6E6E6;
+  text-align: center;
+  font-weight: bold;
+  color: #585858;
+  text-decoration: none;
+  padding: 5px;
+  font-weight: bold;
+  font-size: 120%;
+}
+
+.teacher-indicator{
+  padding-left: 5px;
+}
+
 .delete-comment-link{
   display: none;
+}
+
+.comment-time-in-same-line li{
+  display: inline;
+}
+
+.comment-time-in-same-line li:last-child {
+  padding-left: 5px;
+  padding-right: 3px;
+  float:right;
+  font-size: 90%;
+}
+
+.post-time-aligned-right{
+  text-align: right;
+}
+
+.share-stuff-description {
+  font-size: 90%;
+}
+
+.answers-count {
+    font-size : 120%;
+    padding-bottom: 5px;
+    margin-bottom :10px;
+}
+
+.mark-as-correct a{
+  color: #424242;
 }

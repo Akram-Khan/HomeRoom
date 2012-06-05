@@ -11,7 +11,26 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120419063519) do
+ActiveRecord::Schema.define(:version => 20120531102454) do
+
+  create_table "answers", :force => true do |t|
+    t.text     "description"
+    t.boolean  "correct",     :default => false
+    t.integer  "user_id"
+    t.integer  "course_id"
+    t.integer  "post_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "answers", ["course_id"], :name => "index_answers_on_course_id"
+  add_index "answers", ["post_id"], :name => "index_answers_on_post_id"
+  add_index "answers", ["user_id"], :name => "index_answers_on_user_id"
+
+  create_table "attachments", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "comments", :force => true do |t|
     t.text     "comment"
@@ -61,6 +80,16 @@ ActiveRecord::Schema.define(:version => 20120419063519) do
   add_index "invite_teachers", ["course_id"], :name => "index_invite_teachers_on_course_id"
   add_index "invite_teachers", ["email"], :name => "index_invite_teachers_on_email"
 
+  create_table "like_answers", :force => true do |t|
+    t.integer  "answer_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "like_answers", ["answer_id"], :name => "index_like_answers_on_answer_id"
+  add_index "like_answers", ["user_id"], :name => "index_like_answers_on_user_id"
+
   create_table "likes", :force => true do |t|
     t.integer  "post_id"
     t.integer  "user_id"
@@ -70,6 +99,11 @@ ActiveRecord::Schema.define(:version => 20120419063519) do
 
   add_index "likes", ["post_id"], :name => "index_likes_on_post_id"
   add_index "likes", ["user_id"], :name => "index_likes_on_user_id"
+
+  create_table "links", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "notes", :force => true do |t|
     t.datetime "created_at"
@@ -83,10 +117,17 @@ ActiveRecord::Schema.define(:version => 20120419063519) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "url"
+    t.string   "attached"
   end
 
   add_index "posts", ["course_id"], :name => "index_posts_on_course_id"
   add_index "posts", ["user_id"], :name => "index_posts_on_user_id"
+
+  create_table "questions", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "roles", :force => true do |t|
     t.string   "name"
@@ -123,5 +164,10 @@ ActiveRecord::Schema.define(:version => 20120419063519) do
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "videos", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

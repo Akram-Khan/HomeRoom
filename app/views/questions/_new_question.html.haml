@@ -1,0 +1,7 @@
+.row
+	.post-form
+		=form_for(@question = Question.new, :url => course_questions_path(@course), :validate => true, :remote => true, :html => {:multipart => true, :id => 'create_post_form'}) do |f|
+			=f.text_area :description, :placeholder => "Type Your Question Here", :rows => "5", :id => "styled"
+			=f.hidden_field :user_id, :value => current_user.id
+			=f.hidden_field :course_id, :value => @course.id
+			=f.submit :class => "small black button", :value => "POST"

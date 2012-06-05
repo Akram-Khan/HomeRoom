@@ -1,0 +1,48 @@
+.answers_partial
+	-if post.answers.count > 0
+		%hr
+		%em
+			%strong
+				.answers-count
+					="#{pluralize(post.answers.count,'Answer')} :"
+	-post.answers.each do |answer|
+		.answer
+			.ten.columns
+				.row
+					.two.columns
+						=link_to (image_tag "no-image.jpg"), user_path(answer.user)
+					.four.columns
+						%strong=link_to answer.user.firstname + " " + answer.user.lastname, user_path(answer.user)
+						-@course.teachers.each do |teacher|
+							-if answer.user.id == teacher.id
+								=image_tag "teacher-indicator.png", :class => "teacher-indicator"
+					.two.columns
+						-found = 0
+						-answer.like_answers.each do |like_answer|
+							-if like_answer.user_id == current_user.id
+								-found = 1
+						-if found == 0 && @context != "invite_teacher" && @context != "invite_student"
+							.like-form
+								=form_for [@course, answer, answer.like_answers.build], :remote => true, :html => {:multipart => true, :class => "delete-answer"} do |f|
+									=f.hidden_field :answer_id, :value => answer.id
+									=link_to_function "&#9650 #{answer.like_answers.count}".html_safe, "$(this).parent().submit()"
+						-else
+							= "&#9650 #{answer.like_answers.count}".html_safe
+					.four.columns
+						-if (current_user.id == post.user.id || current_user.id == @course.teachers.first.id) && answer.correct == FALSE
+							.white.radius.label.mark-as-correct
+								=link_to "Mark as Correct", answers_mark_as_correct_path(:course_id => @course.id, :answer_id => answer.id), :remote => true, :class => "delete-answer"
+						-if answer.correct == TRUE
+							.green.radius.label
+								Marked as Correct
+					.two.columns
+					.ten.columns
+						=image_tag "answer_icon.png"
+						=answer.description
+			.one.columns
+				-if current_user.id == answer.user.id || current_user.id == @course.teachers.first.id
+					%strong=link_to "X",[@course, post, answer], :remote => true, :method => :delete, :class => "delete-answer"
+			%hr
+	-if post.answers.count == 0
+		%hr
+	=render :partial => "answers/new_answer", :locals => { :course => @course, :post => post }

@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 	#before_filter :correct_user, :only => :dashboard
 
 	def dashboard
-		@courses = Course.all
+		@courses = Course.order("created_at DESC")
 	end
 
 	def show

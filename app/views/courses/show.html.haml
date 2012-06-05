@@ -4,24 +4,37 @@
 
 .section
 	.row
-		.eight.columns.share-items
-			%ul
-				%li
-					POST:
-				%li(class="active note")
-					=link_to "NOTE", "#"
-				%li
-					=link_to "LINK", "#"
-				%li
-					=link_to "MEDIA", "#"
-				%li
-					=link_to "FILE", "#"
-				%li
-					=link_to "QUESTION", "#"
-				%li
-					=link_to "BLOG", "#"
-			.note-form
-				=render :template => "notes/new"
+		.eight.columns
+			-if @context == "teacher" || @context == "student"
+				.share-items
+					.row
+						.share-items-list
+							.two.columns.active.note
+								=link_to image_tag("note_icon.png"), new_course_note_path(@course), :remote => true
+								=link_to "NOTE", new_course_note_path(@course), :remote => true
+							.two.columns.link
+								=link_to image_tag("link_icon.png"), new_course_link_path(@course), :remote => true
+								=link_to "LINK", new_course_link_path(@course), :remote => true
+							.two.columns.media
+								=link_to image_tag("media_icon.png"), new_course_video_path(@course), :remote => true
+								=link_to "MEDIA", new_course_video_path(@course), :remote => true
+							.two.columns.file
+								=link_to image_tag("file_icon.png"), new_course_attachment_path(@course), :remote => true
+								=link_to "FILE", new_course_attachment_path(@course), :remote => true
+							.three.columns.question
+								=link_to image_tag("question_icon.png"), new_course_question_path(@course), :remote => true
+								=link_to "QUESTION", new_course_question_path(@course), :remote => true
+							.one.columns
+					#new-post
+						=render "notes/new_note"
+			-else
+				=render "enroll_button_partial"
+			.stream-data
+				.posts
+					-@posts.each do |post|
+						=render :partial => "show_post", :locals => {:post => post}
+			.load_more
+				=will_paginate(@posts, :page_links=>false,:previous_label=> " ",:next_label=>"LOAD MORE")
 		.two.columns
 			%ul
 				%li(class="list-courses")
@@ -33,15 +46,10 @@
 				-current_user.courses.each do |course|
 					%li=link_to course.number, course_path(course)
 				%hr
-
+				%li
+					=link_to "+ NEW COURSE", new_course_path, :class => "small blue button"  
 .section
 	.row
-		.eight.columns.stream-data
-			-@posts.each do |post|
-				-if post.type == "Note"
-					=render :partial => "show_note", :locals => {:post => post}
-					
-		.four.columns
 .section
 	.row
 

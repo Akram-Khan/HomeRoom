@@ -1,4 +1,9 @@
 class CoursesController < ApplicationController
+	require 'embedly'
+	require 'json'
+
+	respond_to :html, :xml, :json
+	
 	before_filter :authenticate_user!
 	before_filter :correct_user, :only => [:show, :teachers, :students, :join_as_student, :join_as_teacher]
 	before_filter :restrict_if_course_is_inactive, :only => [:show]
@@ -6,7 +11,6 @@ class CoursesController < ApplicationController
 	make_resourceful do
 		actions :all
 	end
-
 	def students
 		@title = "Students"
 		@course = Course.find(params[:id])
@@ -104,8 +108,10 @@ class CoursesController < ApplicationController
 		@course = Course.find(params[:id])
 		@courses = Course.all
 		@student = @course.students.build
-		@posts = @course.posts.all
+		@posts = @course.posts.paginate(:page => params[:page], :per_page => 20).order("created_at DESC")
 		@user = current_user
+
+		
 	end
 
 	def create
@@ -234,10 +240,10 @@ private
 		course = Course.find(params[:id])
 		if course.active == FALSE
 			if @context == "student"
-				flash[:notice] = "The course will not be active unless it has a teacher. If you haven't already done so, please invite your teacher to join the course"
+				flash[:error] = "The course will not be active unless it has a teacher. If you haven't already done so, please invite your teacher to join the course"
 				redirect_to new_course_invite_teacher_path(course)
 			elsif @context == "invite_teacher"
-				flash[:notice] = "This course will not be active unless you Accept to be its teacher."
+				flash[:error] = "This course will not be active unless you Accept to be its teacher."
 				redirect_to dashboard_path
 			else
 				flash[:error] = "You must be an authorized user to view this page."

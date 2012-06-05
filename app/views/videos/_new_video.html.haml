@@ -1,0 +1,8 @@
+.row
+	.post-form
+		=form_for(@video = Video.new, :url => course_videos_path(@course), :remote => true, :validate => true, :html => {:multipart => true, :id => 'create_post_form'}) do |f|
+			=f.text_field :url, :placeholder => "Paste or Type the URL of Video (Youtube, Vimeo, etc.) or Pictures (Flickr, Photobucket, Picasa etc.)", :class => "url-textfield"
+			=f.text_area :description, :placeholder => "Description", :rows => "5", :id => "styled"
+			=f.hidden_field :user_id, :value => current_user.id
+			=f.hidden_field :course_id, :value => @course.id
+			=f.submit :class => "small black button", :value => "POST"

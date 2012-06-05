@@ -26,6 +26,8 @@ class User < ActiveRecord::Base
   has_many :courses, :through => :roles
   has_many :posts, :dependent => :destroy
   has_many :comments, :dependent => :destroy
+  has_many :answers, :dependent => :destroy
+  has_many :like_answers, :dependent => :destroy
 
   def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
     data = access_token.extra.raw_info

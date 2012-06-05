@@ -13,6 +13,7 @@ Homeroom::Application.routes.draw do
   match "/join_as_teacher", :to => "courses#join_as_teacher"
   match "/decline_student_invitation", :to => "invite_students#decline_student_invitation"
   match "/decline_teacher_invitation", :to => "invite_teachers#decline_teacher_invitation"
+  match "/answers/mark_as_correct", :to => "answers#mark_as_correct"
 
   resources :courses do
     resources :invite_teachers
@@ -24,6 +25,26 @@ Homeroom::Application.routes.draw do
     resources :notes do
       resources :comments
       resources :likes
+    end
+    resources :links do
+      resources :comments
+      resources :likes
+    end
+    resources :videos do
+      resources :comments
+      resources :likes
+    end
+    resources :attachments do
+      resources :comments
+      resources :likes
+    end
+    resources :questions do
+      resources :answers
+      resources :comments
+      resources :likes
+    end
+    resources :answers do
+      resources :like_answers
     end
   end
 

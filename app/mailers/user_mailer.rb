@@ -1,6 +1,6 @@
 class UserMailer < ActionMailer::Base
   default :from => "admin@akaruilabs.com"
-  default_url_options[:host] = "high-beach-2332.heroku.com/"
+  default_url_options[:host] = "homeroom9.com/"
  
   def course_created_by_student(firstname, lastname, email, course)
   	@firstname = firstname
@@ -8,7 +8,7 @@ class UserMailer < ActionMailer::Base
   	@email = email
   	@course = course
   	@coursename = @course.name
-    mail(:to => @email, :subject => "HomeRoom: Course #{@coursename.capitalize} Created")
+    mail(:to => @email, :subject => "HomeRoom9: Course #{@coursename.capitalize} Created")
   end
 
   def course_created_by_teacher(firstname, lastname, email, course)
@@ -17,7 +17,7 @@ class UserMailer < ActionMailer::Base
   	@email = email
   	@course = course
   	@coursename = @course.name
-    mail(:to => @email, :subject => "HomeRoom: Course #{@coursename.capitalize} Created")
+    mail(:to => @email, :subject => "HomeRoom9: Course #{@coursename.capitalize} Created")
   end
 
   def send_invite_to_teacher(firstname, lastname, email, invited_by_firstname, invited_by_lastname, coursename)
@@ -27,7 +27,7 @@ class UserMailer < ActionMailer::Base
   	@invited_by_firstname = invited_by_firstname
   	@invited_by_lastname = invited_by_lastname
   	@coursename = coursename
-    mail(:to => @email, :subject => "HomeRoom: Your student #{@invited_by_firstname} has invited you to join #{@coursename}")
+    mail(:to => @email, :subject => "HomeRoom9: Your student #{@invited_by_firstname} has invited you to join #{@coursename}")
   end
 
   def send_invite_to_students(teacher_firstname,teacher_lastname,email,coursename)
@@ -35,7 +35,7 @@ class UserMailer < ActionMailer::Base
     @teacher_lastname = teacher_lastname
     @email = email
     @coursename = coursename
-    mail(:to => @email, :subject => "HomeRoom: Your teacher #{@teacher_firstname} #{@teacher_lastname}  has invited you to join #{@coursename.capitalize}")
+    mail(:to => @email, :subject => "HomeRoom9: Your teacher #{@teacher_firstname} #{@teacher_lastname}  has invited you to join #{@coursename.capitalize}")
   end
 
 end

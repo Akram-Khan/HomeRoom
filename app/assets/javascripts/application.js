@@ -11,24 +11,59 @@
 //= require_tree .
 
 $(document).ready(function(){
-$(".login_popup").click(function(e){
-    $(".login_popup .login_popup_content").css("visibility","visible");
-   e.stopPropagation();
-});
 
-$("body").click(function(e){
-    $(".login_popup .login_popup_content").css("visibility","hidden");
-});
+  $(".login_popup").click(function(e){
+      $(".login_popup .login_popup_content").css("visibility","visible");
+     e.stopPropagation();
+  });
+
+  $("body").click(function(e){
+      $(".login_popup .login_popup_content").css("visibility","hidden");
+  });
 });
 
 $(document).ready(function(){
-$(".logout_popup").click(function(e){
-    $(".logout_popup .logout_popup_content").css("visibility","visible");
-   e.stopPropagation();
+
+  $(".logout_popup").click(function(e){
+      $(".logout_popup .logout_popup_content").css("visibility","visible");
+     e.stopPropagation();
+  });
+
+  $("body").click(function(e){
+      $(".logout_popup .logout_popup_content").css("visibility","hidden");
+  });
+
+
+
 });
 
-$("body").click(function(e){
-    $(".logout_popup .logout_popup_content").css("visibility","hidden");
+
+$(function(){
+    /* */
+    $(".posts").infinitescroll({
+   
+      navSelector  : ".pagination",            
+                     // selector for the paged navigation (it will be hidden)
+      nextSelector : "a.next_page:last",   
+                     // selector for the NEXT link (to page 2)
+      itemSelector : ".posts",          
+                     // selector for all items you'll retrieve
+	 				behavior : 'twitter',
+			        debug: true,
+			        errorCallback: function() { 
+			          // fade out the error message after 2 seconds
+			          $('#infscr-loading').animate({opacity: .8},2000).fadeOut('normal');   
+			        }
+    }, function(){
+      $('.custom-comment').hide();
+    });
+
+    // remove the paginator when we're done.
+    $(document).ajaxError(function(e,xhr,opt){
+      if (xhr.status == 404) $('a.next_page:last').remove();
+    });    
 });
 
-});
+
+
+

@@ -2,23 +2,33 @@
 	.section
 		.row.note-comment-link
 			.three.columns.show-comments
-				%span=link_to "+", "#"
-				=link_to " Comments #{post.comments.count}", "#"	
+				-teacher_comment = 0
+				-@course.teachers.each do |teacher|
+					-post.comments.each do |comment|
+						-if comment.user_id == teacher.id
+							-teacher_comment = 1
+
+				-if teacher_comment == 1			
+					%span=link_to "+", "#"
+					=link_to " Comments #{post.comments.count}", "#"
+					=image_tag "teacher-indicator-for-comments.png", :class => "teacher-indicator"
+				-else
+					%span=link_to "+", "#"
+					=link_to " Comments #{post.comments.count}", "#"	
 			.two.columns
 				-found = 0
 				-post.likes.each do |like|
 					-if like.user_id == current_user.id
 						-found = 1
-				-if found == 0
+				-if found == 0 && @context != "invite_teacher" && @context != "invite_student"
 					.like-form
-						=form_for [@course,post,post.likes.build], :html => {:class => "like_form"} do |f|
+						=form_for [@course,post,post.likes.build], :remote => true, :html => {:multipart => true, :class => "like_form"} do |f|
 							=f.hidden_field :post_id, :value => post.id
-						
 							=link_to_function "&#9650 #{post.likes.count}".html_safe, "$(this).parent().submit()"
 				-else
 					= "&#9650 #{post.likes.count}".html_safe
-			.one.columns
-
+			.four.columns.post-time-aligned-right
+				%em="#{time_ago_in_words(post.created_at)} ago"
 		.row.custom-comment.custom-word-wrap
 			.comment-top-margin
 				.twelve.columns.post-custom-margin
@@ -30,19 +40,25 @@
 										=link_to (image_tag "no-image-small.jpg"), user_path(comment.user)
 									.post-custom-margin
 										.ten.columns
-											%strong=link_to comment.user.firstname + " " + comment.user.lastname, user_path(comment.user)
-											=comment.comment
+											%ul(class="comment-time-in-same-line")
+												%li
+													%strong=link_to comment.user.firstname + " " + comment.user.lastname, user_path(comment.user)
+													=comment.comment
+												%li
+													%em="#{time_ago_in_words(comment.created_at)} ago"
 									.delete-comment-link
-										-if @user.id == comment.user.id || @user.id == @course.teachers.first.id
-											%strong=link_to "X", [@course,post,comment],:remote => true,:method => :delete, :id => "delete-comment"
-					
-						.post-comment-form
-							=form_for [@course,post,post.comments.build] do |f|
-								=f.hidden_field :post_id, :value => post.id
-								=f.text_field :comment, :placeholder => "Write a Comment ...", :rows=> "5",:class=> "custom-textfield"
+										-if current_user.id == comment.user.id || current_user.id == @course.teachers.first.id
+											%strong=link_to "X", [@course,post,comment],:remote => true,:method => :delete, :id => "delete-comment"	
+						-if @context != "invite_teacher" && @context != "invite_student"			
+							.post-comment-form
+								=form_for [@course,post,post.comments.build], :remote => true, :validate => true, :html => {:multipart => true, :id => 'create_comment_form'} do |f|
+									=f.hidden_field :post_id, :value => post.id
+									=f.text_field :comment, :placeholder => "Write a Comment ...", :rows=> "5",:class=> "custom-textfield"
 					-else
-						.post-first-comment-form
-							=form_for [@course,post,post.comments.build] do |f|
-								=f.hidden_field :post_id, :value => post.id
-								=f.text_field :comment, :placeholder => "Write a Comment ...", :rows=> "5",:class=> "custom-textfield"	
-	-reset_cycle										
+						-if @context != "invite_teacher" && @context != "invite_student"
+							.post-first-comment-form
+								=form_for [@course,post,post.comments.build], :remote => true, :validate => true, :html => {:multipart => true, :id => 'create_comment_form'} do |f|
+									=f.hidden_field :post_id, :value => post.id
+									=f.text_field :comment, :placeholder => "Write a Comment ...", :rows=> "5",:class=> "custom-textfield"
+	-reset_cycle									
+
