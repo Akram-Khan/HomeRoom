@@ -12,9 +12,9 @@
 					.two.columns
 						=link_to (image_tag "no-image.jpg"), user_path(answer.user)
 					.four.columns
-						%strong=link_to post.user.firstname + " " + post.user.lastname, user_path(post.user)
+						%strong=link_to answer.user.firstname + " " + answer.user.lastname, user_path(answer.user)
 						-@course.teachers.each do |teacher|
-							-if post.user_id == teacher.id
+							-if answer.user.id == teacher.id
 								=image_tag "teacher-indicator.png", :class => "teacher-indicator"
 					.two.columns
 						-found = 0
